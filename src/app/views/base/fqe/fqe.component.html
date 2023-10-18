@@ -1,0 +1,40 @@
+<label for="yearSelect"  >Select a Year:</label>
+
+<p>
+  <select class="abc" [(ngModel)]="selectedYear" >
+    <option *ngFor="let year of years" [value]="year"  >{{ year }}</option>
+  </select>
+</p>
+
+<p>You selected: {{ selectedYear }}</p>
+
+<form #phd="ngForm" (ngSubmit)="setPhd">
+
+
+  <label for="totalPhd">total number of Faculty with Ph.D</label>
+  <input type="number" class="form-control form-control-sm " min="0" oninput="validity.valid || (value='')" [(ngModel)]="totalphd" id="totalPhd" name="totalPhd"
+        [formControl]="phd_total" >
+        <p *ngIf="phd_total && phd_total.touched && phd_total?.hasError('required')" class="text-danger"> **FIELD REQUIRD</p>
+
+
+
+<label for="upto8">Faculty Experience up to 8 years</label>
+<input type="number" class="form-control form-control-sm " min="0" oninput="validity.valid || (value='')" [(ngModel)]="phdUptoEight" id="upto8" name="upto8"
+      [formControl]="phd_under8" >
+      <p *ngIf="phd_under8 && phd_under8.touched && phd_under8?.hasError('required')" class="text-danger"> **FIELD REQUIRD</p>
+
+
+<label for="8to15"> Faculty with Experience between 8 to 15years</label>
+<input type="number" class="form-control form-control-sm " min="0" oninput="validity.valid || (value='')" [(ngModel)]="phdEightToFifteen" id="8to15" name="8to15"
+      [formControl]="phd_8to15" >
+      <p *ngIf="phd_8to15 && phd_8to15.touched && phd_8to15?.hasError('required')" class="text-danger"> **FIELD REQUIRD</p>
+
+
+<label for="above15">Faculty with Experience > 15 years</label>
+<input type="number" class="form-control form-control-sm " min="0" oninput="validity.valid || (value='')" [(ngModel)]="phdAboveFifteeen" id="above15" name="above15"
+      [formControl]="phd_above15" >
+      <p *ngIf="phd_above15 && phd_above15.touched && phd_above15?.hasError('required')" class="text-danger"> **FIELD REQUIRD</p>
+
+<button type="submit" mat-raised-button>SAVE </button>
+
+</form>

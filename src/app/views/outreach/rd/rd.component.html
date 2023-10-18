@@ -1,0 +1,16 @@
+<form #Rd ngForm (ngSubmit)="getRD()">
+
+
+  <label for="studentsFromOthStates">total number of Students from other state </label>
+  <input type="number" class="form-control form-control-sm " min="0" oninput="validity.valid || (value='')"  studentsFromOthStates ngModel id="studentsFromOthStates" name="studentsFromOthStates"
+        formControlName="oth_states">
+        <p *ngIf="oth_states && oth_states.touched && oth_states?.hasError('required')" class="text-danger"> **FIELD REQUIRD</p>
+
+        <label for="studentsFromOthCntry">total number of Students from other countries </label>
+        <input type="number" class="form-control form-control-sm " min="0" oninput="validity.valid || (value='')"  studentsFromOthStates ngModel id="studentsFromOthStates" name="studentsFromOthStates"
+              formControlName="oth_countries">
+              <p *ngIf="oth_countries && oth_countries.touched && oth_countries?.hasError('required')" class="text-danger"> **FIELD REQUIRD</p>
+{{studentsFromOthStates}},
+{{studentsFromOthCntry}},
+
+</form>

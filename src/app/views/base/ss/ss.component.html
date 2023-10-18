@@ -1,0 +1,52 @@
+<p>ss works!</p>
+
+<label for="yearSelect"  >Select a Year:</label>
+
+<p>
+  <select class="abc" [(ngModel)]="selectedYear" >
+    <option *ngFor="let year of years" [value]="year"  >{{ year }}</option>
+  </select>
+</p>
+
+<p>You selected: {{ selectedYear }}</p>
+
+<div>
+  <div>
+     <form #templateVariableName="ngForm" (ngSubmit)="getData()">
+      <label for="sanctionedApprovedIntake">Total sanctioned approved intake in the institution considering all UG and PG
+        programs of the institution</label>
+      <input type="number" class="form-control form-control-sm " min="0" oninput="validity.valid || (value='')" [(ngModel)]="sanctionedApprovedIntake" id="sanctionedApprovedIntake" name="sanctionedApprovedIntake"
+      [formControl]="approvedIntake" >
+      <p *ngIf="approvedIntake && approvedIntake.touched && approvedIntake?.hasError('required')" class="text-danger"> **FIELD REQUIRD</p>
+
+
+      <label for="actualIntake">Total number of students enrolled in the institution considering all UG and PG
+        programs of the institution. </label>
+      <input type="number" class="form-control form-control-sm " min="0" oninput="validity.valid || (value='')" [(ngModel)]="actualIntake" id="actualIntake"
+       name="actualIntake" [formControl]="actual_intake" >
+      <p *ngIf="actual_intake && actual_intake.touched && actual_intake?.hasError('required')" class="text-danger"> **FIELD REQUIRD</p>
+
+      <label for="">Total number of students enrolled for the doctoral program till previous
+        academic year.
+        </label>
+        <input type="number" class="form-control form-control-sm " min="0" oninput="validity.valid || (value='')" [(ngModel)]="totalphd"
+        id="totalphd" name="totalphd" [formControl]="total_phd" >
+        <p *ngIf="total_phd && total_phd.touched && total_phd?.hasError('required')" class="text-danger"> **FIELD REQUIRD</p>
+
+
+
+        <br>
+        <button type="submit" mat-raised-button>SUBMIT</button>
+
+    </form>
+  </div>
+  <p>
+    the data submitted for sanctioned intake {{sanctionedApprovedIntake}}
+    <p></p>
+    the data submitted for actual  intake {{actualIntake}}
+    <p></p>
+    the data submitted for phd is  {{totalphd}}
+
+
+
+</div>

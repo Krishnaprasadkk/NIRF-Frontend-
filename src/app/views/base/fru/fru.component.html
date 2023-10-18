@@ -1,0 +1,31 @@
+<label for="yearSelect"  >Select a Year:</label>
+
+<p>
+  <select class="abc" [(ngModel)]="selectedYear" >
+    <option *ngFor="let year of years" [value]="year"  >{{ year }}</option>
+  </select>
+</p>
+
+<p>You selected: {{ selectedYear }}</p>
+
+<form #finance="ngForm" (ngSubmit)="getFru">
+  <label for="capitalExp"> Average Annual Capital Expenditure per student for the previous three years</label>
+<p>(Excluding expenditure on construction of new buildings)</p>
+<input type="number" class="form-control form-control-sm " min="0" oninput="validity.valid || (value='')" [(ngModel)]="capitalExp" id="totalPhd" name="totalPhd"
+[formControl]="capital_exp" >
+<p *ngIf="capital_exp && capital_exp.touched && capital_exp?.hasError('required')" class="text-danger"> **FIELD REQUIRD</p>
+
+
+
+  <label for="operationalExp"> Average Annual Operational (or Recurring) Expenditure per student for
+    the previous three years. </label>
+    <p class="success">(Excluding maintenance of hostels and allied
+      services)</p>
+      <input type="number" class="form-control form-control-sm " min="0" oninput="validity.valid || (value='')" [(ngModel)]="operationalExp" id="totalPhd" name="totalPhd"
+      [formControl]="operational_exp" >
+      <p *ngIf="operational_exp && operational_exp.touched && operational_exp?.hasError('required')" class="text-danger"> **FIELD REQUIRD</p>
+      <br>
+      <button type="submit" mat-raised-button>SAVE & UPDATE</button>
+</form>
+
+

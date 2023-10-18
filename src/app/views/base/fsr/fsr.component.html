@@ -1,0 +1,19 @@
+<p>fsr works!</p>
+
+<label for="yearSelect"  >Select a Year:</label>
+
+<p>
+  <select class="abc" [(ngModel)]="selectedYear" >
+    <option *ngFor="let year of years" [value]="year"  >{{ year }}</option>
+  </select>
+</p>
+
+<p>You selected: {{ selectedYear }}</p>
+
+<form #fsr="ngForm" (ngSubmit)="getFaculty">
+  <label for="faculty">ENTER THE FULL TIME REGULAR FACULTY NUMBER</label>
+  <input type="number" class="form-control form-control-sm " min="0" oninput="validity.valid || (value='')" [(ngModel)]="fulltimeFaculty" id="sanctionedApprovedIntake" name="sanctionedApprovedIntake"
+  [formControl]="fulltime_faculty" >
+  <p *ngIf="fulltime_faculty && fulltime_faculty.touched && fulltime_faculty?.hasError('required')" class="text-danger"> **FIELD REQUIRED</p>
+<button mat-raised-button type="submit">SAVE</button>
+</form>
