@@ -7,7 +7,7 @@ import { Page500Component } from './views/pages/page500/page500.component';
 import { LoginComponent } from './views/pages/login/login.component';
 import { RegisterComponent } from './views/pages/register/register.component';
 // import { OiModule } from './views/oi/oi.module';
-import { OutreachModule } from './views/outreach/outreach.module';
+// import { OutreachModule } from './views/outreach/outreach.module';
 
 const routes: Routes = [
   {
@@ -43,10 +43,12 @@ const routes: Routes = [
         import('./views/research/research.module').then((m) => m.ResearchModule)
 
       },
+
       {
-        path:'outreach',
+
+        path:'outreach2',
         loadChildren: () =>
-        import('./views/outreach/outreach.module').then((m) => m.OutreachModule)
+        import('./views/outreach2/outreach2.module').then((m)=>m.Outreach2Module)
       },
       {
         path: 'buttons',
@@ -83,6 +85,11 @@ const routes: Routes = [
         loadChildren: () =>
           import('./views/pages/pages.module').then((m) => m.PagesModule)
       },
+      {
+  path:'graduation-outcomes',
+  loadChildren: () =>
+  import('./views/graduation-outcomes/graduation-outcomes.module').then((m) => m.GraduationOutcomesModule)
+      }
     ]
   },
   {

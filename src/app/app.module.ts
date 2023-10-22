@@ -68,8 +68,8 @@ import {
 } from '@coreui/angular';
 
 import { IconModule, IconSetService } from '@coreui/icons-angular';
-import { OutreachModule } from './views/outreach/outreach.module';
-import { WDComponent } from './views/outreach/wd/wd.component';
+// import { Outreach2Module } from './views/outreach2/outreach2.module';
+// import { WDComponent } from './views/outreach/wd1/wd.component';
 
 
 const APP_CONTAINERS = [

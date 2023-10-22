@@ -2,12 +2,11 @@ import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-fppp',
-  templateUrl: './fppp.component.html',
-  styleUrls: ['./fppp.component.scss']
+  selector: 'app-pu',
+  templateUrl: './pu.component.html',
+  styleUrls: ['./pu.component.scss']
 })
-export class FpppComponent {
-
+export class PuComponent {
   getCurrentYear(){
     return new Date().getFullYear();
   }
@@ -28,9 +27,8 @@ constructor()
 
 number_of_publications!:number;
 number_publications=new FormControl("",Validators.required)
-  getfppp(){
 
-  }
+getpu(){
 
-
+}
 }

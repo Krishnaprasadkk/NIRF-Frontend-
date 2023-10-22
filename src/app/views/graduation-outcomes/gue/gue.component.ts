@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-fppp',
-  templateUrl: './fppp.component.html',
-  styleUrls: ['./fppp.component.scss']
+  selector: 'app-gue',
+  templateUrl: './gue.component.html',
+  styleUrls: ['./gue.component.scss']
 })
-export class FpppComponent {
+export class GueComponent {
 
   getCurrentYear(){
     return new Date().getFullYear();
@@ -26,11 +26,12 @@ constructor()
     this.selectedYear = e.target.value
   }
 
-number_of_publications!:number;
-number_publications=new FormControl("",Validators.required)
-  getfppp(){
+  students_passed!:number;
+  students_passed_valid=new FormControl("",Validators.required)
+  getGue(){
 
   }
+
 
 
 }

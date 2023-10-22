@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WDComponent } from './wd.component';
+import { RdComponent } from './rd.component';
 
-describe('WDComponent', () => {
-  let component: WDComponent;
-  let fixture: ComponentFixture<WDComponent>;
+describe('RdComponent', () => {
+  let component: RdComponent;
+  let fixture: ComponentFixture<RdComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [WDComponent]
+      declarations: [RdComponent]
     });
-    fixture = TestBed.createComponent(WDComponent);
+    fixture = TestBed.createComponent(RdComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

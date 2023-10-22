@@ -1,0 +1,16 @@
+<h2>Combined metric for Quality of Publications </h2>
+<form #qp="ngForm" (ngSubmit)="getqp()">
+
+
+  <label for="qp">Enter the total Citation Count over previous three years. </label>
+
+  <input type="number" class="form-control form-control-sm " min="0" oninput="validity.valid || (value='')"   id="no_publications" name="no_publications"  [(ngModel)]="total_citation_Count" formcontrol="number_cc">
+  <p *ngIf="number_cc && number_cc.touched && number_cc?.hasError('required')" class="text-danger"> **FIELD REQUIRD</p>
+<br>
+
+<label for="qp">Enter the total Number of citations in top 25 percentile over previous three years. </label>
+<input type="number" class="form-control form-control-sm " min="0" oninput="validity.valid || (value='')"   id="no_publications" name="no_publications"  [(ngModel)]="top_25_percent" formcontrol="top_25_cc">
+<p *ngIf="top_25_cc && top_25_cc.touched && top_25_cc?.hasError('required')" class="text-danger"> **FIELD REQUIRD</p>
+
+<button btn btn-primary>Save Data</button>
+</form>

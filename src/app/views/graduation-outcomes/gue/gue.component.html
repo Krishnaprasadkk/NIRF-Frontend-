@@ -1,0 +1,28 @@
+<div>
+  <h4>Enter the Students passing the respective university
+    examinations in stipulated time for the program in which enrolled</h4>
+</div>
+
+<form #passed="ngForm" (ngSubmit)="getGue()">
+  <p>SELECT YEAR</p>
+
+  <select (change)="update($event)"  style="width: 50%; height:30px" >
+    <div>
+
+    </div>
+    <option value="default"></option>
+    <option *ngFor="let year of years" [value]="year">
+        {{year}}
+    </option>
+</select>
+<br>
+<br>
+<label for="studentsFromOthStates">total number of Students passed in stipulated time </label>
+  <input type="number" class="form-control form-control-sm " min="0" oninput="validity.valid || (value='')"   id="studentsFromOthStates" name="studentsFromOthStates" [(ngModel)]="students_passed" [formControl]="students_passed_valid"
+       >
+        <p *ngIf="students_passed_valid && students_passed_valid.touched && students_passed_valid?.hasError('required')" class="text-danger"> **FIELD REQUIRD</p>
+<br>
+        <button btn-btn primary type="submit" align="center">submit</button>
+
+
+</form>

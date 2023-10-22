@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-fppp',
-  templateUrl: './fppp.component.html',
-  styleUrls: ['./fppp.component.scss']
+  selector: 'app-gphd',
+  templateUrl: './gphd.component.html',
+  styleUrls: ['./gphd.component.scss']
 })
-export class FpppComponent {
+export class GphdComponent {
 
   getCurrentYear(){
     return new Date().getFullYear();
@@ -26,9 +26,9 @@ constructor()
     this.selectedYear = e.target.value
   }
 
-number_of_publications!:number;
-number_publications=new FormControl("",Validators.required)
-  getfppp(){
+  students_graduated!:number;
+  students_graduated_valid=new FormControl("",Validators.required)
+  getGPhd(){
 
   }
 

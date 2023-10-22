@@ -10,21 +10,21 @@ export const navItems: INavData[] = [
       text: 'NEW'
     }
   },
-  {
-    title: true,
-    name: 'Theme'
-  },
-  {
-    name: 'Colors',
-    url: '/theme/colors',
-    iconComponent: { name: 'cil-drop' }
-  },
-  {
-    name: 'Typography',
-    url: '/theme/typography',
-    linkProps: { fragment: 'someAnchor' },
-    iconComponent: { name: 'cil-pencil' }
-  },
+  // {
+  //   title: true,
+  //   name: 'Theme'
+  // },
+  // {
+  //   name: 'Colors',
+  //   url: '/theme/colors',
+  //   iconComponent: { name: 'cil-drop' }
+  // },
+  // {
+  //   name: 'Typography',
+  //   url: '/theme/typography',
+  //   linkProps: { fragment: 'someAnchor' },
+  //   iconComponent: { name: 'cil-pencil' }
+  // },
   {
     name: 'Parameters',
     title: true
@@ -118,164 +118,212 @@ export const navItems: INavData[] = [
         name:'Combined metric for Publications',
         url:'/research/fppp'
       },
+      {
+name:"metric for publications",
+url:'research/pu'
+      },
+      {
+        name:'Qulaity of Publications',
+        url:'research/qp'
+      },
+      {name:'Published and granted patents',
+        url:'research/ipr',
+
+      }
+
 
 
 
 
 ]
 },
+// {
+//   name:'OUTREACH AND INCLUSITIVITY'
+// ,
+// url:'/outreach',
+// iconComponent: { name: 'cil-cursor' },
+// children:[
+// {
+//   name : 'REIGONAL-DIVERSITY',
+// url:'/outreach/rd'
+
+// },
+// {
+// name:'RD',
+// url: 'outreach/reigonalDiversity'
+// },
+// {
+// name: 'WOMEN -DIVERSITY',
+// url:'/outreach/wd'
+// }
+// ]
+
+// },
 {
-  name:'OUTREACH AND INCLUSITIVITY'
-,
-url:'/outreach',
+name:'Graduation Outcomes ',
+url:'/graduation-outcomes',
 iconComponent: { name: 'cil-cursor' },
 children:[
-{
-  name : 'REIGONAL-DIVERSITY',
-url:'/outreach/rd',
-
-},
-{
-name:'RD',
-url: 'outreach/reigonalDiversity'
-},
-{
-name: 'WOMEN -DIVERSITY',
-url:'/outreach/wd'
-}
+  {
+name:'Metric for University Exams',
+url:'graduation-outcomes/gue'
+  },
+  {
+    name:'Number of Ph.D students graduated',
+    url:'graduation-outcomes/gphd'
+  }
 ]
-
 },
+{
+name : 'Outreach & Inclusitivity',
+url : '/outreach2',
+iconComponent: { name: 'cil-cursor' },
+children:[
   {
-    name: 'RESEARCH',
-    url: '/buttons',
-    iconComponent: { name: 'cil-cursor' },
-    children: [
-      {
-        name: 'Buttons',
-        url: '/buttons/buttons'
-      },
-      {
-        name: 'Button groups',
-        url: '/buttons/button-groups'
-      },
-      {
-        name: 'Dropdowns',
-        url: '/buttons/dropdowns'
-      },
-      {
-        name:'IPR',
-        url:'/buttons/ipr'
-      },
-      {
-        name:'QP',
-        url:'/buttons/qp'
-      },
-    ]
+  name  : 'REIGONAL-DIVERSITY',
+  url : 'outreach2/rd'
   },
   {
-    name: 'Forms',
-    url: '/forms',
-    iconComponent: { name: 'cil-notes' },
-    children: [
-      {
-        name: 'Form Control',
-        url: '/forms/form-control'
-      },
-      {
-        name: 'Select',
-        url: '/forms/select'
-      },
-      {
-        name: 'Checks & Radios',
-        url: '/forms/checks-radios'
-      },
-      {
-        name: 'Range',
-        url: '/forms/range'
-      },
-      {
-        name: 'Input Group',
-        url: '/forms/input-group'
-      },
-      {
-        name: 'Floating Labels',
-        url: '/forms/floating-labels'
-      },
-      {
-        name: 'Layout',
-        url: '/forms/layout'
-      },
-      {
-        name: 'Validation',
-        url: '/forms/validation'
-      }
-    ]
+    name:'WOMEN -DIVERSITY',
+    url:'outreach2/wd'
   },
   {
-    name: 'Charts',
-    url: '/charts',
-    iconComponent: { name: 'cil-chart-pie' }
+    name:'ESCS',
+    url:'outreach2/escs'
+  }
+  ]
+
   },
-  {
-    name: 'Icons',
-    iconComponent: { name: 'cil-star' },
-    url: '/icons',
-    children: [
-      {
-        name: 'CoreUI Free',
-        url: '/icons/coreui-icons',
-        badge: {
-          color: 'success',
-          text: 'FREE'
-        }
-      },
-      {
-        name: 'CoreUI Flags',
-        url: '/icons/flags'
-      },
-      {
-        name: 'CoreUI Brands',
-        url: '/icons/brands'
-      }
-    ]
-  },
-  {
-    name: 'Notifications',
-    url: '/notifications',
-    iconComponent: { name: 'cil-bell' },
-    children: [
-      {
-        name: 'Alerts',
-        url: '/notifications/alerts'
-      },
-      {
-        name: 'Badges',
-        url: '/notifications/badges'
-      },
-      {
-        name: 'Modal',
-        url: '/notifications/modal'
-      },
-      {
-        name: 'Toast',
-        url: '/notifications/toasts'
-      }
-    ]
-  },
-  {
-    name: 'Widgets',
-    url: '/widgets',
-    iconComponent: { name: 'cil-calculator' },
-    badge: {
-      color: 'info',
-      text: 'NEW'
-    }
-  },
-  {
-    title: true,
-    name: 'Extras'
-  },
+  // {
+  //   name: 'RESEARCH',
+  //   url: '/buttons',
+  //   iconComponent: { name: 'cil-cursor' },
+  //   children: [
+  //     {
+  //       name: 'Buttons',
+  //       url: '/buttons/buttons'
+  //     },
+  //     {
+  //       name: 'Button groups',
+  //       url: '/buttons/button-groups'
+  //     },
+  //     {
+  //       name: 'Dropdowns',
+  //       url: '/buttons/dropdowns'
+  //     },
+  //     {
+  //       name:'IPR',
+  //       url:'/buttons/ipr'
+  //     },
+  //     {
+  //       name:'QP',
+  //       url:'/buttons/qp'
+  //     },
+  //   ]
+  // },
+  // {
+  //   name: 'Forms',
+  //   url: '/forms',
+  //   iconComponent: { name: 'cil-notes' },
+  //   children: [
+  //     {
+  //       name: 'Form Control',
+  //       url: '/forms/form-control'
+  //     },
+  //     {
+  //       name: 'Select',
+  //       url: '/forms/select'
+  //     },
+  //     {
+  //       name: 'Checks & Radios',
+  //       url: '/forms/checks-radios'
+  //     },
+  //     {
+  //       name: 'Range',
+  //       url: '/forms/range'
+  //     },
+  //     {
+  //       name: 'Input Group',
+  //       url: '/forms/input-group'
+  //     },
+  //     {
+  //       name: 'Floating Labels',
+  //       url: '/forms/floating-labels'
+  //     },
+  //     {
+  //       name: 'Layout',
+  //       url: '/forms/layout'
+  //     },
+  //     {
+  //       name: 'Validation',
+  //       url: '/forms/validation'
+  //     }
+  //   ]
+  // },
+  // {
+  //   name: 'Charts',
+  //   url: '/charts',
+  //   iconComponent: { name: 'cil-chart-pie' }
+  // },
+  // {
+  //   name: 'Icons',
+  //   iconComponent: { name: 'cil-star' },
+  //   url: '/icons',
+  //   children: [
+  //     {
+  //       name: 'CoreUI Free',
+  //       url: '/icons/coreui-icons',
+  //       badge: {
+  //         color: 'success',
+  //         text: 'FREE'
+  //       }
+  //     },
+  //     {
+  //       name: 'CoreUI Flags',
+  //       url: '/icons/flags'
+  //     },
+  //     {
+  //       name: 'CoreUI Brands',
+  //       url: '/icons/brands'
+  //     }
+  //   ]
+  // },
+  // {
+  //   name: 'Notifications',
+  //   url: '/notifications',
+  //   iconComponent: { name: 'cil-bell' },
+  //   children: [
+  //     {
+  //       name: 'Alerts',
+  //       url: '/notifications/alerts'
+  //     },
+  //     {
+  //       name: 'Badges',
+  //       url: '/notifications/badges'
+  //     },
+  //     {
+  //       name: 'Modal',
+  //       url: '/notifications/modal'
+  //     },
+  //     {
+  //       name: 'Toast',
+  //       url: '/notifications/toasts'
+  //     }
+  //   ]
+  // },
+  // {
+  //   name: 'Widgets',
+  //   url: '/widgets',
+  //   iconComponent: { name: 'cil-calculator' },
+  //   badge: {
+  //     color: 'info',
+  //     text: 'NEW'
+  //   }
+  // },
+  // {
+  //   title: true,
+  //   name: 'Extras'
+  // },
   {
     name: 'Pages',
     url: '/login',
@@ -298,23 +346,25 @@ url:'/outreach/wd'
         url: '/500'
       }
     ]
-  },
-  {
-    title: true,
-    name: 'Links',
-    class: 'py-0'
-  },
-  {
-    name: 'Docs',
-    url: 'https://coreui.io/angular/docs/templates/installation',
-    iconComponent: { name: 'cil-description' },
-    attributes: { target: '_blank', class: '-text-dark' },
-    class: 'mt-auto'
-  },
-  {
-    name: 'Try CoreUI PRO',
-    url: 'https://coreui.io/product/angular-dashboard-template/',
-    iconComponent: { name: 'cil-layers' },
-    attributes: { target: '_blank' }
+  },{
+  name:'Compare College'
   }
+  // {
+  //   title: true,
+  //   name: 'Links',
+  //   class: 'py-0'
+  // },
+  // {
+  //   name: 'Docs',
+  //   url: 'https://coreui.io/angular/docs/templates/installation',
+  //   iconComponent: { name: 'cil-description' },
+  //   attributes: { target: '_blank', class: '-text-dark' },
+  //   class: 'mt-auto'
+  // },
+  // {
+  //   name: 'Try CoreUI PRO',
+  //   url: 'https://coreui.io/product/angular-dashboard-template/',
+  //   iconComponent: { name: 'cil-layers' },
+  //   attributes: { target: '_blank' }
+  // }
 ];
