@@ -13,15 +13,14 @@
  <br>
    <label for="studentsFromOthStates">total number of Students from other state </label>
    <input type="number" class="form-control form-control-sm " min="0" oninput="validity.valid || (value='')"  id="studentsFromOthStates" name="studentsFromOthStates"
-        [(ngModel)]="studentsFromOthStates" >
+        [(ngModel)]="studentsFromOthStates" formcontrol="oth_states" >
          <p *ngIf="oth_states && oth_states.touched && oth_states?.hasError('required')" class="text-danger"> **FIELD REQUIRD</p>
 
-         <label for="studentsFromOthCntry">total number of Students from other countries </label>
-         <input [(ngModel)]="studentsFromOthCntry"  type="number" class="form-control form-control-sm " min="0" oninput="validity.valid || (value='')"   id="studentsFromOthStates" name="studentsFromOthStates"
+         <label for="studentsFromOthcountry">total number of Students from other countries </label>
+         <input [(ngModel)]="studentsFromOthCntry"  type="number" class="form-control form-control-sm " min="0" oninput="validity.valid || (value='')"   id="studentsFromOthcountry" name="studentsFromOthcountry" formcontrol="oth_countries"
               >
                <p *ngIf="oth_countries && oth_countries.touched && oth_countries?.hasError('required')" class="text-danger"> **FIELD REQUIRD</p>
- {{studentsFromOthStates}}
- {{studentsFromOthCntry}}
+
  <br>
  <button type="submit" >SAVE AND UPDATE</button>
  </form>

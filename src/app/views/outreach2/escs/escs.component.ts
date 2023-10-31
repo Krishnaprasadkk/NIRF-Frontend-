@@ -1,17 +1,20 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, ViewChild } from '@angular/core';
 import { FormControl, NgForm, Validators } from '@angular/forms';
+import { dataservice } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-escs',
   templateUrl: './escs.component.html',
-  styleUrls: ['./escs.component.scss']
+  styleUrls: ['./escs.component.scss'],
+  providers:[dataservice,HttpClient]
 })
 export class EscsComponent {
 
   getCurrentYear(){
     return new Date().getFullYear();
   }
-constructor()
+constructor(private dataService:dataservice)
 {
   this.selectedYear=this.years[0];
 }
@@ -29,13 +32,24 @@ constructor()
 
   @ViewChild('escs') public escsval!:NgForm;
 
-  studentsFromOthStates!:number;
-  studentsFromOthCntry!:number;
-ug_Students=new FormControl("",Validators.required);
-pg_students=new FormControl("",Validators.required);
+  students_full_fees!:number;
+
+fees=new FormControl("",Validators.required);
+feesdata:any={
+  "year":0,
+  "fees":0
+}
+
+//url;
+urlval=" "
 
 getEscs(){
 console.log(this.escsval);
+this.feesdata.fees= this.escsval.value['students_full_fees']
+this.feesdata.year=this.selectedYear;
+console.log(this.feesdata)
+this.dataService.sendData(this.feesdata,this.urlval);
+
 
 }
 

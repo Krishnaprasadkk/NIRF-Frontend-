@@ -1,17 +1,21 @@
-import { Component } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { NgForOfContext } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
+import { Component, ViewChild } from '@angular/core';
+import { FormControl, NgForm, Validators } from '@angular/forms';
+import { dataservice } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-fppp',
   templateUrl: './fppp.component.html',
-  styleUrls: ['./fppp.component.scss']
+  styleUrls: ['./fppp.component.scss'],
+  providers:[dataservice,HttpClient]
 })
 export class FpppComponent {
 
   getCurrentYear(){
     return new Date().getFullYear();
   }
-constructor()
+constructor(private dataService:dataservice)
 {
   this.selectedYear=this.years[0];
 }
@@ -26,10 +30,37 @@ constructor()
     this.selectedYear = e.target.value
   }
 
-number_of_publications!:number;
-number_publications=new FormControl("",Validators.required)
-  getfppp(){
+fundingval:any={
+  "research_fundings":0,
+  "consultation_fundings":0,
+  "edp_fundings":0,
+  "year":0
+}
 
+
+research_fundings!:number;
+consultation_fundings!:number;
+edp_fundings!:number;
+
+research_fund=new FormControl("",Validators.required);
+const_funding=new FormControl("",Validators.required);
+edp_fund=new FormControl("",Validators.required);
+@ViewChild('fppp') public fpppval!:NgForm;
+
+
+//this is the url
+urlval="urls"
+
+getfppp(){
+console.log(this.fpppval);
+console.log("hello")
+
+this.fundingval.research_fundings=this.fpppval.value['RF'],
+this.fundingval.consultation_fundings=this.fpppval.value['CF']
+this.fundingval.edp_fundings=this.fpppval.value['edp']
+this.fundingval.year=this.selectedYear;
+console.log(this.fundingval)
+this.dataService.sendData(this.fundingval,this.urlval);
   }
 
 

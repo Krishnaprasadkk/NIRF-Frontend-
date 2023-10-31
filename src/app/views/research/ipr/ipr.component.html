@@ -1,1 +1,32 @@
-<p>ipr works!</p>
+
+<form #ipr="ngForm" (ngSubmit)="getIpr()">
+
+  <p>SELECT YEAR</p>
+
+  <select (change)="update($event)"  style="width: 50%; height:30px" >
+    <div>
+
+    </div>
+    <option value="default"></option>
+    <option *ngFor="let year of years" [value]="year">
+        {{year}}
+    </option>
+</select>
+
+<br>
+<br>
+<label for="no_publications">Enter the number of patents granted</label>
+<input type="number" class="form-control form-control-sm " min="0" oninput="validity.valid || (value='')"   id="no_publications" name="no_publications_granted"  [(ngModel)]="no_patents_granted" formcontrol="patents_granted">
+        <p *ngIf="patents_granted && patents_granted.touched && patents_granted?.hasError('required')" class="text-danger"> **FIELD REQUIRD</p>
+<br>
+
+<label for="no_publications">Enter the number of patents published
+  </label>
+<input type="number" class="form-control form-control-sm " min="0" oninput="validity.valid || (value='')"   id="no_publications" name="no_publications_published"  [(ngModel)]="no_patents_published" formcontrol="patents_published">
+        <p *ngIf="patents_published && patents_published.touched && patents_published?.hasError('required')" class="text-danger"> **FIELD REQUIRD</p>
+<br>
+<br>
+
+  <button type="submit">submit</button>
+
+</form>

@@ -1,17 +1,20 @@
-import { Component } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { Component, ViewChild } from '@angular/core';
+import { FormControl, NgForm, Validators } from '@angular/forms';
+import { dataservice } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-gue',
   templateUrl: './gue.component.html',
-  styleUrls: ['./gue.component.scss']
+  styleUrls: ['./gue.component.scss'],
+  providers:[dataservice,HttpClient]
 })
 export class GueComponent {
 
   getCurrentYear(){
     return new Date().getFullYear();
   }
-constructor()
+constructor(private dataService:dataservice)
 {
   this.selectedYear=this.years[0];
 }
@@ -27,8 +30,29 @@ constructor()
   }
 
   students_passed!:number;
-  students_passed_valid=new FormControl("",Validators.required)
+  graduated=new FormControl("",Validators.required)
+
+  guedata:any={
+    "year":0,
+    "students_passed":0
+  }
+
+  @ViewChild('passed') passedobj!:NgForm;
+
+
+  // url
+urlval="url"
+
   getGue(){
+
+this.guedata.year=this.selectedYear;
+this.guedata.students_passed=this.passedobj.value['passedval']
+console.log(this.passedobj.value['passedval'])
+console.log(this.passedobj)
+console.log(this.guedata)
+
+this.dataService.sendData(this.guedata,this.urlval);
+
 
   }
 

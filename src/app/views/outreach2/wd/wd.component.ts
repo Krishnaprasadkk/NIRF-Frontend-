@@ -1,17 +1,20 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 // import value from '../../../../declarations';
+import { dataservice } from '../../../services/data.service';
 
 @Component({
   selector: 'app-wd',
   templateUrl: './wd.component.html',
-  styleUrls: ['./wd.component.scss']
+  styleUrls: ['./wd.component.scss'],
+  providers:[dataservice,HttpClient]
 })
 export class WdComponent {
   getCurrentYear(){
     return new Date().getFullYear();
   }
-constructor()
+constructor(private dataService :dataservice)
 {
   this.selectedYear=this.years[0];
 
@@ -37,12 +40,15 @@ totalWomenFaculty:number=0;
 
 
 
- womenDiversity!:{
-"total_WomenStudents":0,
-"totalWomenFaculty":0
- }
-@ViewChild('wd') public  women_d!:NgForm;
-womenData!:FormGroup;
+womenDiversity:any={
+"year":1,
+"womenStudents":0,
+"womenFaculty":0
+}
+
+
+@ViewChild('wd')  women_d!:NgForm;
+// womenData!:FormGroup;
 ngOnInit(): void {
   // this.womenData=new FormGroup(
   //   {
@@ -52,11 +58,21 @@ ngOnInit(): void {
 
   // )
 }
-women_students =new FormControl("",Validators.required);
+women__students =new FormControl("",Validators.required);
+women__faculty =new FormControl("",Validators.required);
 
-  getWD(){
-console.log(this.womenData);
+url!:"this is url provided bby dhiraj"
+
+
+getWD(){
+// console.log(this.womenData);
 console.log(this.women_d);
+this.womenDiversity.womenStudents =this.women_d.value['women_students'],
+this.womenDiversity.womenFaculty=this.women_d.value['women_faculty'],
+this.womenDiversity.year=<number>this.selectedYear;
+console.log(this.womenDiversity.womenStudents)
+console.log(this.womenDiversity)
+this.dataService.sendData(this.womenDiversity,this.url);
 
   }
 

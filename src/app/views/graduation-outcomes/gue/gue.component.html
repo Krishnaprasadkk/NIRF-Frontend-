@@ -17,12 +17,12 @@
 </select>
 <br>
 <br>
-<label for="studentsFromOthStates">total number of Students passed in stipulated time </label>
-  <input type="number" class="form-control form-control-sm " min="0" oninput="validity.valid || (value='')"   id="studentsFromOthStates" name="studentsFromOthStates" [(ngModel)]="students_passed" [formControl]="students_passed_valid"
+<label for="passedval">total number of Students passed in stipulated time </label>
+  <input type="number" class="form-control form-control-sm " min="0" oninput="validity.valid || (value='')"   id="passedval" name="passedval" [(ngModel)]="students_passed" formcontrol="graduated"
        >
-        <p *ngIf="students_passed_valid && students_passed_valid.touched && students_passed_valid?.hasError('required')" class="text-danger"> **FIELD REQUIRD</p>
+        <p *ngIf="graduated && graduated.touched && graduated?.hasError('required')" class="text-danger"> **FIELD REQUIRD</p>
 <br>
-        <button btn-btn primary type="submit" align="center">submit</button>
+        <button type="submit">submit</button>
 
 
 </form>

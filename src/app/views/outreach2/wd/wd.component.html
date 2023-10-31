@@ -12,14 +12,15 @@
   <br>
   <br>
   <label for="women_students"><h4>total number of Women Students</h4></label>
-    <input type="number" class="form-control form-control-sm " min="0" oninput="validity.valid || (value='')"  id="women_students" name="women_students" [(ngModel)]="totalWomenStudents"
+    <input type="number" class="form-control form-control-sm " min="0" oninput="validity.valid || (value='')"  id="women_students" name="women_students" [(ngModel)]="totalWomenStudents" formcontrol="women__students"
         >
 <br>
 
-          <label for="women_faculty"><h4>total number of Women Faculty </h4></label>
-          <label for="women_faculty">(including women members in senior
+          <label for="women_faculty">total number of Women Faculty
+            (including women members in seniors
             administrative positions, such as Heads of Departments, Deans or Institute Heads.)</label>
-          <input type="number" class="form-control form-control-sm " min="0" oninput="validity.valid || (value='')"  [(ngModel)]="totalWomenFaculty" id="women_faculty" name="women_faculty"
+
+          <input type="number" class="form-control form-control-sm " min="0" oninput="validity.valid || (value='')"  [(ngModel)]="totalWomenFaculty" id="women_faculty" name="women_faculty" formcontrol="women__faculty"
                 >
                 <br>
                 <br>

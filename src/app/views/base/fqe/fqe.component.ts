@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { Component, ViewChild } from '@angular/core';
+import { FormControl, NgForm, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-fqe',
@@ -31,8 +31,11 @@ phd_8to15= new FormControl("",Validators.required)
 phd_above15= new FormControl("",Validators.required)
 phd_total= new FormControl("",Validators.required)
 
-  setPhd(){
 
+@ViewChild('phd') phdvalue!:NgForm;
+  setPhd(){
+console.log(this.phdvalue);
+console.log(this.totalphd)
   }
 
 }

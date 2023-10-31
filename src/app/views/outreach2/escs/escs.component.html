@@ -42,10 +42,9 @@
     </option>
 </select>
 <br>
-  <label for="studentsFromOthStates">Enter the number of students </label>
-  <input type="number" class="form-control form-control-sm " min="0" oninput="validity.valid || (value='')"   id="studentsFromOthStates" name="studentsFromOthStates"
-       >
-        <p *ngIf="ug_Students && ug_Students.touched && ug_Students?.hasError('required')" class="text-danger"> **FIELD REQUIRD</p>
+  <label for="students_full_fees">Enter the number of students </label>
+  <input type="number" class="form-control form-control-sm " min="0" oninput="validity.valid || (value='')"   id="students_full_fees" name="students_full_fees" [(ngModel)]="students_full_fees"  >
+        <p *ngIf="fees && fees.touched && fees?.hasError('required')" class="text-danger"> **FIELD REQUIRD</p>
 
 
 <br>

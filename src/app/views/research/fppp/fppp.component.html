@@ -1,5 +1,5 @@
-<p>fppp works!</p>
-<form #fppp="ngForm" (ngSubmit)="getfppp()">
+
+<form #fppp="ngForm" (ngSubmit)="getfppp()" >
 
   <p>SELECT YEAR</p>
 
@@ -12,10 +12,28 @@
         {{year}}
     </option>
 </select>
+
 <br>
-<label for="no_publications">number of publications</label>
-<input type="number" class="form-control form-control-sm " min="0" oninput="validity.valid || (value='')"   id="no_publications" name="no_publications"  [(ngModel)]="number_of_publications" formcontrol="number_publications">
-        <p *ngIf="number_publications && number_publications.touched && number_publications?.hasError('required')" class="text-danger"> **FIELD REQUIRD</p>
+<br>
+<label for="no_publications">RF is the average annual research funding earnings (amount received in rupees) at
+  institute level</label>
+<input type="number" class="form-control form-control-sm " min="0" oninput="validity.valid || (value='')"   id="no_publications" name="RF"  [(ngModel)]="research_fundings" formcontrol="number_publications">
+        <p *ngIf="research_fund && research_fund.touched && research_fund?.hasError('required')" class="text-danger"> **FIELD REQUIRD</p>
+<br>
+
+<label for="no_publications">CF is the average annual consultancy amount (amount actually received in rupees)
+  at institute level
+  </label>
+<input type="number" class="form-control form-control-sm " min="0" oninput="validity.valid || (value='')"   id="no_publications" name="CF"  [(ngModel)]="consultation_fundings" formcontrol="number_publications">
+        <p *ngIf="const_funding && const_funding.touched && const_funding?.hasError('required')" class="text-danger"> **FIELD REQUIRD</p>
+<br>
+<br>
+<label for="no_publications"> Average annual earnings from Full Time Executive Development Programs of a
+  minimum duration of one year
+  </label>
+<input type="number" class="form-control form-control-sm " min="0" oninput="validity.valid || (value='')"   id="no_publications" name="edp"  [(ngModel)]="edp_fundings" formcontrol="edp_fund">
+        <p *ngIf="edp_fund && edp_fund.touched && edp_fund?.hasError('required')" class="text-danger"> **FIELD REQUIRD</p>
+<br>
 <br>
   <button type="submit">submit</button>
 
