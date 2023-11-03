@@ -1,16 +1,19 @@
-import { Component } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { Component, ViewChild } from '@angular/core';
+import { FormControl, NgForm, Validators } from '@angular/forms';
+import { dataservice } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-fsr',
   templateUrl: './fsr.component.html',
-  styleUrls: ['./fsr.component.scss']
+  styleUrls: ['./fsr.component.scss'],
+  providers:[dataservice,HttpClient]
 })
 export class FsrComponent {
   getCurrentYear(){
     return new Date().getFullYear();
   }
-constructor()
+constructor(private dataService:dataservice)
 {
   this.selectedYear=this.years[0];
 }
@@ -21,7 +24,20 @@ constructor()
   selectedYear!:number;
 fulltimeFaculty!:number;
 
+
+@ViewChild('fsr') fsrvalue!:NgForm;
+fsrdata:any={
+'year':0,
+'fulltimeFaculty':0
+}
+
+urlval=" "
   getFaculty(){
+console.log(this.fsrvalue);
+this.fsrdata.year=this.selectedYear;
+this.fsrdata.fulltimeFaculty=this.fulltimeFaculty;
+console.log(this.fsrdata);
+this.dataService.sendData(this.fsrdata,this.urlval);
 
   }
 

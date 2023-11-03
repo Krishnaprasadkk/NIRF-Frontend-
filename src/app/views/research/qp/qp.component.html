@@ -7,7 +7,7 @@
     <div>
 
     </div>
-    <option value="default"></option>
+
     <option *ngFor="let year of years" [value]="year">
         {{year}}
     </option>
@@ -25,5 +25,5 @@
 <p *ngIf="top_25_cc && top_25_cc.touched && top_25_cc?.hasError('required')" class="text-danger"> **FIELD REQUIRD</p>
 <br>
 <br>
-<button btn btn-primary>Save Data</button>
+<button *ngIf="selectedYear && total_citation_Count && top_25_percent ">Save Data</button>
 </form>

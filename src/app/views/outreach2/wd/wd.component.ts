@@ -35,8 +35,8 @@ constructor(private dataService :dataservice)
   }
 
 
-totalWomenStudents:number=0;
-totalWomenFaculty:number=0;
+totalWomenStudents!:number;
+totalWomenFaculty!:number;
 
 
 
@@ -48,16 +48,7 @@ womenDiversity:any={
 
 
 @ViewChild('wd')  women_d!:NgForm;
-// womenData!:FormGroup;
-ngOnInit(): void {
-  // this.womenData=new FormGroup(
-  //   {
-  //     'women_students': new FormControl("",Validators.required),
-  //     'women_faculty' : new FormControl("",Validators.required)
-  //   }
 
-  // )
-}
 women__students =new FormControl("",Validators.required);
 women__faculty =new FormControl("",Validators.required);
 

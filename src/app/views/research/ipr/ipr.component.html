@@ -3,11 +3,11 @@
 
   <p>SELECT YEAR</p>
 
-  <select (change)="update($event)"  style="width: 50%; height:30px" >
+  <select (change)="update($event)" class="abc" style="width: 50%; height:30px" >
     <div>
 
     </div>
-    <option value="default"></option>
+
     <option *ngFor="let year of years" [value]="year">
         {{year}}
     </option>
@@ -27,6 +27,6 @@
 <br>
 <br>
 
-  <button type="submit">submit</button>
+  <button type="submit" *ngIf="no_patents_granted && no_patents_published ">submit</button>
 
 </form>

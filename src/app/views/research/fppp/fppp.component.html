@@ -7,7 +7,7 @@
     <div>
 
     </div>
-    <option value="default"></option>
+
     <option *ngFor="let year of years" [value]="year">
         {{year}}
     </option>
@@ -35,6 +35,6 @@
         <p *ngIf="edp_fund && edp_fund.touched && edp_fund?.hasError('required')" class="text-danger"> **FIELD REQUIRD</p>
 <br>
 <br>
-  <button type="submit">submit</button>
+  <button type="submit" *ngIf="selectedYear && research_fundings && consultation_fundings && edp_fundings">submit</button>
 
 </form>

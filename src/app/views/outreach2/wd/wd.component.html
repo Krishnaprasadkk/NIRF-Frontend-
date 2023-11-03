@@ -4,7 +4,7 @@
       <div>
 
       </div>
-      <option value="default"></option>
+
       <option *ngFor="let year of years" [value]="year">
           {{year}}
       </option>
@@ -24,7 +24,7 @@
                 >
                 <br>
                 <br>
-  <button type="submit">Save Data</button>
+  <button type="submit" *ngIf="totalWomenStudents && totalWomenFaculty ">Save Data</button>
 
 
 

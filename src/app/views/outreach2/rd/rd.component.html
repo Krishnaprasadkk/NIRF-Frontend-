@@ -5,7 +5,7 @@
      <div>
 
      </div>
-     <option value="default"></option>
+
      <option *ngFor="let year of years" [value]="year">
          {{year}}
      </option>
@@ -22,7 +22,7 @@
                <p *ngIf="oth_countries && oth_countries.touched && oth_countries?.hasError('required')" class="text-danger"> **FIELD REQUIRD</p>
 
  <br>
- <button type="submit" >SAVE AND UPDATE</button>
+ <button type="submit" *ngIf="studentsFromOthStates && studentsFromOthCntry">SAVE AND UPDATE</button>
  </form>
 
 

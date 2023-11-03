@@ -8,11 +8,11 @@
 
 <p>You selected: {{ selectedYear }}</p>
 
-<form #phd="ngForm" (ngSubmit)="setPhd">
+<form #phd="ngForm" (ngSubmit)="setPhd()">
 
 
-  <label for="totalPhd">total number of Faculty with Ph.D</label>
-  <input type="number" class="form-control form-control-sm " min="0" oninput="validity.valid || (value='')" [(ngModel)]="totalphd" id="totalPhd" name="totalPhd"
+  <label for="totalPhdval">total number of Faculty with Ph.D</label>
+  <input type="number" class="form-control form-control-sm " min="0" oninput="validity.valid || (value='')" [(ngModel)]="totalphd" id="totalPhdval" name="totalPhdval"
         [formControl]="phd_total" >
         <p *ngIf="phd_total && phd_total.touched && phd_total?.hasError('required')" class="text-danger"> **FIELD REQUIRD</p>
 
@@ -34,7 +34,10 @@
 <input type="number" class="form-control form-control-sm " min="0" oninput="validity.valid || (value='')" [(ngModel)]="phdAboveFifteeen" id="above15" name="above15"
       [formControl]="phd_above15" >
       <p *ngIf="phd_above15 && phd_above15.touched && phd_above15?.hasError('required')" class="text-danger"> **FIELD REQUIRD</p>
+<br>
+<br>
 
-<button type="submit" mat-raised-button>SAVE </button>
+<button type="submit" *ngIf="totalphd && phdUptoEight && phdEightToFifteen &&  phdAboveFifteeen" mat-raised-button> Submit </button>
 
 </form>
+

@@ -1,19 +1,23 @@
-import { Component } from '@angular/core';
-import { NgModel, Validators } from '@angular/forms';
+import { Component, ViewChild } from '@angular/core';
+import { NgForm, NgModel, Validators } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule,FormControl } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { dataservice } from 'src/app/services/data.service';
+import { cond } from 'lodash-es';
 
 @Component({
   selector: 'app-ss',
   templateUrl: './ss.component.html',
-  styleUrls: ['./ss.component.scss']
+  styleUrls: ['./ss.component.scss'],
+  providers:[dataservice,HttpClient]
 })
 export class SsComponent {
   getCurrentYear(){
     return new Date().getFullYear();
   }
-constructor()
+constructor(private dataService:dataservice)
 {
   this.selectedYear=this.years[0];
 }
@@ -32,11 +36,28 @@ constructor()
 
   total_phd= new FormControl("",Validators.required)
 
+StudentData:any={
+"year":0,
+"sanctionedApprovedIntake":0,
+"actualIntake":0,
+"totalphd":0
 
+}
 
+@ViewChild('ss') StudentStrength!:NgForm;
+
+//url
+
+urlval=" "
   selectedYear:any;
 getData(){
 
+  this.StudentData.year=<number> this.selectedYear;
+  this.StudentData.sanctionedApprovedIntake=this.sanctionedApprovedIntake;
+  this.StudentData.actualIntake=this.actualIntake;
+  this.StudentData.totalphd=this.totalphd;
+  this.dataService.sendData(this.StudentData,this.urlval);
+  console.log(this.StudentData);
 
 }
 

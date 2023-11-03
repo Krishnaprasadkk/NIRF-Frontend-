@@ -8,7 +8,7 @@
 
 <p>You selected: {{ selectedYear }}</p>
 
-<form #finance="ngForm" (ngSubmit)="getFru">
+<form #finance="ngForm" (ngSubmit)="getFru()">
   <label for="capitalExp"> Average Annual Capital Expenditure per student for the previous three years</label>
 <p>(Excluding expenditure on construction of new buildings)</p>
 <input type="number" class="form-control form-control-sm " min="0" oninput="validity.valid || (value='')" [(ngModel)]="capitalExp" id="totalPhd" name="totalPhd"
@@ -25,7 +25,7 @@
       [formControl]="operational_exp" >
       <p *ngIf="operational_exp && operational_exp.touched && operational_exp?.hasError('required')" class="text-danger"> **FIELD REQUIRD</p>
       <br>
-      <button type="submit" mat-raised-button>SAVE & UPDATE</button>
+      <button type="submit" mat-raised-button *ngIf="selectedYear && capitalExp  && operationalExp ">SAVE & UPDATE</button>
 </form>
 
 

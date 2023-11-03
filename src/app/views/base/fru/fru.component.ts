@@ -1,17 +1,20 @@
-import { Component } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { Component, ViewChild } from '@angular/core';
+import { FormControl, NgForm, Validators } from '@angular/forms';
+import { dataservice } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-fru',
   templateUrl: './fru.component.html',
-  styleUrls: ['./fru.component.scss']
+  styleUrls: ['./fru.component.scss'],
+  providers:[dataservice,HttpClient]
 })
 export class FruComponent {
 
   getCurrentYear(){
     return new Date().getFullYear();
   }
-constructor()
+constructor(private dataService:dataservice)
 {
   this.selectedYear=this.years[0];
 }
@@ -28,7 +31,24 @@ constructor()
 
 operational_exp=new FormControl("",Validators.required)
 
+
+@ViewChild('finance') fananceval!:NgForm;
+
+financeData:any={
+  "year":0,
+  "capitalExp":0,
+  "operationalExp":0
+}
+
+//url
+urlval=" "
   getFru(){
+this.financeData.year=this.selectedYear;
+this.financeData.capitalExp=this.capitalExp;
+this.financeData.operationalExp=this.operationalExp;
+console.log(this.financeData);
+
+this.dataService.sendData(this.financeData,this.urlval);
 
   }
 
