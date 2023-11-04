@@ -16,4 +16,17 @@ export class dataservice{
     })
 
   }
+
+  registerCollege(collegeData:any){
+    return this.http.post(" register college url ",collegeData).subscribe(Response=>{
+      console.log("object sent successfully")
+    })
+  }
+
+  validateCollegeCredentials():boolean{
+
+    return true;
+  }
+
+
 }

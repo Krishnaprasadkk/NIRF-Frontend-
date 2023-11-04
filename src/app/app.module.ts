@@ -68,6 +68,8 @@ import {
 } from '@coreui/angular';
 
 import { IconModule, IconSetService } from '@coreui/icons-angular';
+import { ComparisonComponent } from './views/comparecollege/comparison/comparison.component';
+// import { ComparisonComponent } from './views/comparison/comparison.component';
 // import { Outreach2Module } from './views/outreach2/outreach2.module';
 // import { WDComponent } from './views/outreach/wd1/wd.component';
 
@@ -79,7 +81,7 @@ const APP_CONTAINERS = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, ...APP_CONTAINERS],
+  declarations: [AppComponent, ...APP_CONTAINERS, ComparisonComponent],
   imports: [FormsModule,HttpClientModule,
     BrowserModule,
     ReactiveFormsModule,

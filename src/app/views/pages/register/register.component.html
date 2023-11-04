@@ -4,33 +4,36 @@
       <c-col lg="7" md="9" xl="6">
         <c-card class="mx-4">
           <c-card-body class="p-4">
-            <form cForm>
+            <form cForm (ngSubmit)="RegisterAccount()" #register="ngForm">
               <h1>Register</h1>
-              <p class="text-medium-emphasis">Create your account</p>
+              <p class="text-medium-emphasis">Create your college account</p>
               <c-input-group class="mb-3">
                 <span cInputGroupText>
                   <svg cIcon name="cilUser"></svg>
                 </span>
-                <input autoComplete="name" cFormControl placeholder="Username" />
+                <input autoComplete="name" cFormControl placeholder="College-name" name="college_name" [(ngModel)]="collegename" />
               </c-input-group>
               <c-input-group class="mb-3">
                 <span cInputGroupText>@</span>
-                <input autoComplete="email" cFormControl placeholder="Email" />
+                <input autoComplete="email" cFormControl placeholder="Email" name="college_email" [(ngModel)]="email" />
               </c-input-group>
               <c-input-group class="mb-3">
+
                 <span cInputGroupText>
                   <svg cIcon name="cilLockLocked"></svg>
                 </span>
-                <input autoComplete="new-password" cFormControl placeholder="Password" type="password" />
+                <input autoComplete="new-password" cFormControl placeholder="Password" type="password" name="password" [(ngModel)]="password"/>
               </c-input-group>
               <c-input-group class="mb-4">
                 <span cInputGroupText>
                   <svg cIcon name="cilLockLocked"></svg>
                 </span>
-                <input autoComplete="new-password" cFormControl placeholder="Repeat password" type="password" />
+                <input autoComplete="new-password" cFormControl placeholder="Repeat password" type="password" name="confirm_password" [(ngModel)]="confirm_pass"/>
               </c-input-group>
               <div class="d-grid">
-                <button cButton color="success">Create Account</button>
+                <p class="text-medium-emphasis" *ngIf="password!=confirm_pass">passwords do not match </p>
+                <button cButton color="success" type="submit" >Create Account</button>
+
               </div>
             </form>
           </c-card-body>

@@ -90,6 +90,17 @@ const routes: Routes = [
   loadChildren: () =>
   import('./views/graduation-outcomes/graduation-outcomes.module').then((m) => m.GraduationOutcomesModule)
       }
+      ,
+       {
+        path:'compare',
+        loadChildren: () =>
+        import('./views/compare/compare.module').then((m) => m.CompareModule)
+      },
+      {path:'comparison',
+      loadChildren: () =>
+      import('./views/comparecollege/comparecollege.module').then((m)=> m.ComparecollegeModule)
+
+    }
     ]
   },
   {

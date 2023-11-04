@@ -5,14 +5,14 @@
         <c-card-group>
           <c-card class="p-4">
             <c-card-body>
-              <form cForm>
+              <form cForm (ngSubmit)="loginfun()"  #login="ngForm">
                 <h1>Login</h1>
                 <p class="text-medium-emphasis">Sign In to your account</p>
                 <c-input-group class="mb-3">
                   <span cInputGroupText>
                     <svg cIcon name="cilUser"></svg>
                   </span>
-                  <input autoComplete="username" cFormControl placeholder="Username" />
+                  <input [(ngModel)]="collegeName" autoComplete="username" cFormControl placeholder="college-name" name="college_name" />
                 </c-input-group>
                 <c-input-group class="mb-4">
                   <span cInputGroupText>
@@ -21,15 +21,20 @@
                   <input
                     autoComplete="current-password"
                     cFormControl
-                    placeholder="Password"
-                    type="password"
+                    placeholder="Password" [(ngModel)]="password"
+                    type="password" name="password"
                   />
                 </c-input-group>
                 <c-row>
                   <c-col xs="6">
-                    <button cButton class="px-4" color="primary">
+                    <button cButton class="px-4" color="primary" type="submit" >
+
                       Login
                     </button>
+                    <p class="text-medium-emphasis" *ngIf="!isValid && buttonPressed">Enter Correct Password to login </p>
+
+                    <p class="text-medium-emphasis" *ngIf="!isValid && password && collegeName">Incorrect password</p>
+
                   </c-col>
                   <c-col class="text-right" xs="6">
                     <button cButton class="px-0" color="link">
@@ -45,8 +50,7 @@
               <div>
                 <h2>Sign up</h2>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                  tempor incididunt ut labore et dolore magna aliqua.
+                  If you havent registered your college ,register here
                 </p>
                 <button [active]="true" cButton class="mt-3" color="primary" routerLink="/register">
                   Register Now!
