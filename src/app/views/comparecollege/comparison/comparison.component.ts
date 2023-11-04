@@ -1,14 +1,19 @@
 // import { HttpBackend } from '@angular/common/http';
+import { ChartjsModule } from '@coreui/angular-chartjs';
 import { Component } from '@angular/core';
 
 
 @Component({
   selector: 'app-comparison',
   templateUrl: './comparison.component.html',
-  styleUrls: ['./comparison.component.scss']
+  styleUrls: ['./comparison.component.scss'],
+
 })
 export class ComparisonComponent {
 
+  constructor(public chart:ChartjsModule){
+
+  }
   collegeList=["KLS GIT","Angadi Instute Of Tech","SheshGiri"];
   selectedCollege=this.collegeList[0];
 
