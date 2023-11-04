@@ -8,11 +8,14 @@ import { LoginComponent } from './views/pages/login/login.component';
 import { RegisterComponent } from './views/pages/register/register.component';
 // import { OiModule } from './views/oi/oi.module';
 // import { OutreachModule } from './views/outreach/outreach.module';
+// import { ComparecollegeModule } from './views/comparecollege/comparecollege.module';
+// import { ComparisonComponent } from './views/comparecollege/comparison/comparison.component';
+// import { CompareCollegeComponent } from './views/compare/compare-college/compare-college.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
@@ -91,14 +94,11 @@ const routes: Routes = [
   import('./views/graduation-outcomes/graduation-outcomes.module').then((m) => m.GraduationOutcomesModule)
       }
       ,
-       {
-        path:'compare',
-        loadChildren: () =>
-        import('./views/compare/compare.module').then((m) => m.CompareModule)
-      },
-      {path:'comparison',
-      loadChildren: () =>
-      import('./views/comparecollege/comparecollege.module').then((m)=> m.ComparecollegeModule)
+
+      {
+      path:'comparison',
+      loadChildren :() =>
+     import('./views/comparecollege/comparecollege.module').then((m) => m.ComparecollegeModule)
 
     }
     ]

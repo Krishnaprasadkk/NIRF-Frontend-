@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { ComparecollegeRoutingModule } from './comparecollege-routing.module';
 import { ComparisonComponent } from './comparison/comparison.component';
+import { FormsModule } from '@angular/forms';
+
 
 
 @NgModule({
@@ -11,7 +13,8 @@ import { ComparisonComponent } from './comparison/comparison.component';
   ],
   imports: [
     CommonModule,
-    ComparecollegeRoutingModule
+    ComparecollegeRoutingModule,
+    FormsModule
   ]
 })
 export class ComparecollegeModule { }

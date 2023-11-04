@@ -2,29 +2,22 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ComparisonComponent } from './comparison/comparison.component';
 
+
 const routes: Routes = [
 {
-  path:'',
-  data:{
-    title:"comparison"
-  },
+  path :'',
+  data:{title:"compare college"},
   children:[
     {
-      path:'compare',
-      component:ComparisonComponent,
-      data:{
-        title:"Compare college"
-      },
-
+      path:'compareCollege',component:ComparisonComponent,data:{title:"college Comparison"}
     }
   ]
 }
 
-
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
 export class ComparecollegeRoutingModule { }

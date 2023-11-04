@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, ViewChild } from '@angular/core';
-import { FormControl, NgForm, Validators } from '@angular/forms';
+import { FormControl, NgForm, Validators,FormsModule } from '@angular/forms';
 import { dataservice } from 'src/app/services/data.service';
 
 @Component({

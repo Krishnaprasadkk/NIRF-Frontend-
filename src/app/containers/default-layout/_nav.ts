@@ -195,6 +195,21 @@ children:[
   ]
 
   },
+  {
+name:'compare college'
+,
+url:'/comparison',
+iconComponent: { name: 'cil-cursor' },
+children:[
+  {name : 'compare with other college',
+url:'comparison/compareCollege'
+
+}
+]
+
+
+  },
+
   // {
   //   name: 'RESEARCH',
   //   url: '/buttons',
@@ -348,21 +363,9 @@ children:[
       }
     ]
   },
-  {
-  name:'Comp',
-  url:'/compare',
-  iconComponent: { name: 'cil-chart-pie' },
-  children:[
-    {
-      name:'CompareCollege',
-      url:'compare_college'
-    }
-  ]
-  },
-  {
-    name:"comparison "
-    ,url:'compare_college'
-  }
+
+
+
   // {
   //   title: true,
   //   name: 'Links',

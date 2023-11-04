@@ -45,20 +45,20 @@ const routes: Routes = [
         path:'ss',
         component:SsComponent,
         data:{
-          Title:'Student Strength including Ph.D. students'
+          title:'Student Strength including Ph.D. students'
         }
       },{
     path:'fsr',
     component:FsrComponent,
     data:{
-      Title:"Faculty-Student Ratio with emphasis on permanent faculty"
+      title:"Faculty-Student Ratio with emphasis on permanent faculty"
     }
       },
       {
         path:'fqe',
         component:FqeComponent,
         data:{
-          Title:"Combined Metric for Faculty with PhD (or equivalent) and Experience (FQE)"
+          title:"Combined Metric for Faculty with PhD (or equivalent) and Experience (FQE)"
         }
       },
       {
