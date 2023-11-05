@@ -7,7 +7,7 @@
   <select class="abc" [(ngModel)]="selectedCollege" (change)="getCollegeData($event)">
     <option  *ngFor="let college of collegeList" [value]="college" ><h1>{{college}}</h1></option>
   </select>
-  <!-- <c-chart [data]="data" type="bar"></c-chart> -->
+  <c-chart [data]="data" type="bar"></c-chart>
 </div>
 
 

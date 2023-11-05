@@ -28,5 +28,9 @@ export class dataservice{
     return true;
   }
 
+  getAllCollegeList(){
+
+  }
+
 
 }
