@@ -43,14 +43,24 @@ oth_countries=new FormControl("",Validators.required);
 rddata:any={
 "year":0,
 "studentsFromOthStates":0,
-"studentsFromOthCntry":0
+"studentsFromOthCntry":0,
+"college":0,
 }
+res:any
+ngOnInit(): void {
+  
+  this.res=this.dataService.userLoggedIn();
+  this.dataService.getPostOrPut(this.urlval,this.selectedYear);
 
+  
+}
 //url
-urlval=""
+urlval="http://127.0.0.1:8000/api/rds/"
 
 
   getRD(){
+    this.res=this.dataService.userLoggedIn();
+    this.rddata.college=this.dataService.userData.id;
 console.log(this.reigonaldiversity);
 console.log(this.selectedYear);
 this.rddata.year=this.selectedYear;
@@ -58,7 +68,7 @@ this.rddata.studentsFromOthStates=this.reigonaldiversity.value['studentsFromOthS
 this.rddata.studentsFromOthCntry=this.reigonaldiversity.value['studentsFromOthcountry']
 console.log(this.rddata)
 
-this.dataService.sendData(this.rddata,this.urlval);
+this.dataService.sendData(this.rddata,this.urlval,this.selectedYear);
 
 
 }

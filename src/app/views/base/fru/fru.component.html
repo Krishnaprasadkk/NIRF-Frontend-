@@ -1,7 +1,7 @@
 <label for="yearSelect"  >Select a Year:</label>
 
 <p>
-  <select class="abc" [(ngModel)]="selectedYear" >
+  <select class="abc" [(ngModel)]="selectedYear" (change)="update($event)" >
     <option *ngFor="let year of years" [value]="year"  >{{ year }}</option>
   </select>
 </p>

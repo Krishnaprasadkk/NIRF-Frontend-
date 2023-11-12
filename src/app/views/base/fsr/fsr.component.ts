@@ -9,7 +9,7 @@ import { dataservice } from 'src/app/services/data.service';
   styleUrls: ['./fsr.component.scss'],
   providers:[dataservice,HttpClient]
 })
-export class FsrComponent {
+export class FsrComponent  {
   getCurrentYear(){
     return new Date().getFullYear();
   }
@@ -28,16 +28,45 @@ fulltimeFaculty!:number;
 @ViewChild('fsr') fsrvalue!:NgForm;
 fsrdata:any={
 'year':0,
-'fulltimeFaculty':0
+'permanent_faculty':0,
+'college':0
+}
+res:any
+ngOnInit(): void {
+  
+  this.res=this.dataService.userLoggedIn();
+  this.dataService.getPostOrPut(this.geturl,this.selectedYear);
+
+  
 }
 
-urlval=" "
+geturl="http://127.0.0.1:8000/api/fsrs/"
+update(e:any){
+  console.log(this.res)
+  this.fsrdata.college=this.dataService.userData.id
+  console.log(this.fsrdata)
+  console.log(this.fsrdata.college)
+  this.selectedYear = e.target.value
+  this.dataService.getPostOrPut(this.geturl,this.selectedYear);
+  this.res=this.dataService.userLoggedIn();
+  console.log(this.dataService.userData);
+
+
+
+}
+
+urlval="http://127.0.0.1:8000/api/fsrs/"
   getFaculty(){
+    this.res=this.dataService.userLoggedIn();
+    this.fsrdata.college=this.dataService.userData.id;
+    console.log(this.fsrdata.collegeId)
+
 console.log(this.fsrvalue);
 this.fsrdata.year=this.selectedYear;
-this.fsrdata.fulltimeFaculty=this.fulltimeFaculty;
+this.fsrdata.permanent_faculty=this.fulltimeFaculty;
+console.log("hello")
 console.log(this.fsrdata);
-this.dataService.sendData(this.fsrdata,this.urlval);
+this.dataService.sendData(this.fsrdata,this.urlval,this.selectedYear);
 
   }
 

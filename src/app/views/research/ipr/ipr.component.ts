@@ -40,18 +40,28 @@ patents_published=new FormControl("",Validators.required);
   patentval:any={
     "year":this.selectedYear,
     "patents_granted":0,
-    "patents_published":0
+    "patents_published":0,
+    "college":0,
   }
-
+  res:any
+  ngOnInit(): void {
+    
+    this.res=this.dataService.userLoggedIn();
+    this.dataService.getPostOrPut(this.urlval,this.selectedYear);
+  
+    
+  }
 
   urlval="dhiraj url"
   getIpr(){
 console.log(this.patents);
+this.res=this.dataService.userLoggedIn();
+    this.patentval.college=this.dataService.userData.id;
 this.patentval.patents_granted=this.patents.value['no_publications_granted'];
 this.patentval.patents_published=this.patents.value['no_publications_published']
 this.patentval.year=<number>this.selectedYear
 console.log(this.patentval)
-return this.dataService.sendData(this.patentval,this.urlval);
+return this.dataService.sendData(this.patentval,this.urlval,this.selectedYear);
 
 
 

@@ -1,5 +1,6 @@
 import { INavData } from '@coreui/angular';
 
+
 export const navItems: INavData[] = [
   {
     name: 'Dashboard',
@@ -194,6 +195,21 @@ children:[
   ]
 
   },
+  {
+name:'compare college'
+,
+url:'/comparison',
+iconComponent: { name: 'cil-cursor' },
+children:[
+  {name : 'compare with other college',
+url:'comparison/compareCollege'
+
+}
+]
+
+
+  },
+
   // {
   //   name: 'RESEARCH',
   //   url: '/buttons',
@@ -346,9 +362,10 @@ children:[
         url: '/500'
       }
     ]
-  },{
-  name:'Compare College'
-  }
+  },
+
+
+
   // {
   //   title: true,
   //   name: 'Links',

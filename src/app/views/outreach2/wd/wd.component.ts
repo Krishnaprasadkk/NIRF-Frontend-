@@ -43,19 +43,29 @@ totalWomenFaculty!:number;
 womenDiversity:any={
 "year":1,
 "womenStudents":0,
-"womenFaculty":0
+"womenFaculty":0,
+"college":0,
 }
 
+res:any
+ngOnInit(): void {
+  
+  this.res=this.dataService.userLoggedIn();
+  this.dataService.getPostOrPut(this.urlval,this.selectedYear);
 
+  
+}
 @ViewChild('wd')  women_d!:NgForm;
 
 women__students =new FormControl("",Validators.required);
 women__faculty =new FormControl("",Validators.required);
 
-url!:"this is url provided bby dhiraj"
+urlval!:"http://127.0.0.1:8000/api/wds/"
 
 
 getWD(){
+  this.res=this.dataService.userLoggedIn();
+    this.womenDiversity.college=this.dataService.userData.id;
 // console.log(this.womenData);
 console.log(this.women_d);
 this.womenDiversity.womenStudents =this.women_d.value['women_students'],
@@ -63,7 +73,7 @@ this.womenDiversity.womenFaculty=this.women_d.value['women_faculty'],
 this.womenDiversity.year=<number>this.selectedYear;
 console.log(this.womenDiversity.womenStudents)
 console.log(this.womenDiversity)
-this.dataService.sendData(this.womenDiversity,this.url);
+this.dataService.sendData(this.womenDiversity,this.urlval,this.selectedYear);
 
   }
 

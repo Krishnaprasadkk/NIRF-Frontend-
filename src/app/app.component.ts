@@ -4,6 +4,7 @@ import { Router, NavigationEnd } from '@angular/router';
 import { IconSetService } from '@coreui/icons-angular';
 import { iconSubset } from './icons/icon-subset';
 import { Title } from '@angular/platform-browser';
+import { ChartjsModule } from '@coreui/angular-chartjs';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 @Component({
   selector: 'app-root',

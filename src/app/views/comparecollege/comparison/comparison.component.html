@@ -1,0 +1,13 @@
+
+<div>
+  <p>
+<h2>Select The College To compare</h2>
+
+
+  <select class="abc" [(ngModel)]="selectedCollege" (change)="getCollegeData($event)">
+    <option  *ngFor="let college of collegeList" [value]="college" ><h1>{{college}}</h1></option>
+  </select>
+  <c-chart [data]="data" type="bar"></c-chart>
+</div>
+
+

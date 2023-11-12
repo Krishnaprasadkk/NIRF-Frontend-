@@ -36,19 +36,49 @@ operational_exp=new FormControl("",Validators.required)
 
 financeData:any={
   "year":0,
-  "capitalExp":0,
-  "operationalExp":0
+  "total_revenue":0,
+  "total_expenditure":0,
+  "college":0
+}
+res:any
+ngOnInit(): void {
+  
+  this.res=this.dataService.userLoggedIn();
+  this.dataService.getPostOrPut(this.urlval,this.selectedYear);
+  
 }
 
 //url
-urlval=" "
+urlval="http://127.0.0.1:8000/api/frus/"
+update(e:any){
+  // console.log(this.res)
+   this.financeData.college=this.dataService.userData.id
+   console.log(this.dataService.userData.id);
+  // console.log(this.fsrdata)
+  // console.log(this.fsrdata.college)
+  this.selectedYear = <number>e.target.value
+  this.dataService.getPostOrPut(this.urlval,this.selectedYear);
+  this.res=this.dataService.userLoggedIn();
+  console.log(this.dataService.userData);
+
+
+
+}
+
+
   getFru(){
+    this.res=this.dataService.userLoggedIn();
+    this.financeData.college=this.dataService.userData.id;
+    console.log("hello")
+
 this.financeData.year=this.selectedYear;
-this.financeData.capitalExp=this.capitalExp;
-this.financeData.operationalExp=this.operationalExp;
+this.financeData.total_revenue=this.capitalExp;
+this.financeData.total_expenditure=this.operationalExp;
 console.log(this.financeData);
 
-this.dataService.sendData(this.financeData,this.urlval);
+this.financeData.college=this.dataService.userData.id;
+console.log(this.financeData)
+this.dataService.sendData(this.financeData,this.urlval,this.selectedYear);
 
   }
 

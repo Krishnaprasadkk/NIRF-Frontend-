@@ -33,6 +33,7 @@ import { HttpClientModule,HttpClient } from '@angular/common/http';
 // import {MatSidenavModule} from '@angular/material/sidenav';
 // import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
 
+import { ChartjsModule } from '@coreui/angular-chartjs';
 
 import { NgScrollbarModule } from 'ngx-scrollbar';
 
@@ -68,6 +69,8 @@ import {
 } from '@coreui/angular';
 
 import { IconModule, IconSetService } from '@coreui/icons-angular';
+// import { ComparisonComponent } from './views/comparecollege/comparison/comparison.component';
+// import { ComparisonComponent } from './views/comparison/comparison.component';
 // import { Outreach2Module } from './views/outreach2/outreach2.module';
 // import { WDComponent } from './views/outreach/wd1/wd.component';
 
@@ -80,7 +83,7 @@ const APP_CONTAINERS = [
 
 @NgModule({
   declarations: [AppComponent, ...APP_CONTAINERS],
-  imports: [FormsModule,HttpClientModule,
+  imports: [FormsModule,HttpClientModule,ChartjsModule,
     BrowserModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
@@ -115,7 +118,8 @@ const APP_CONTAINERS = [
       useClass: HashLocationStrategy
     },
     IconSetService,
-    Title
+    Title,
+    ChartjsModule
   ],
   bootstrap: [AppComponent]
 })
