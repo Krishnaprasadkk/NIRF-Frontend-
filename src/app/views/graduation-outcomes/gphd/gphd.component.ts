@@ -27,6 +27,9 @@ constructor(private dataService:dataservice)
 
   update(e:any){
     this.selectedYear = e.target.value
+    this.dataService.getPostOrPut(this.urlval,this.selectedYear);
+  this.res=this.dataService.userLoggedIn();
+  console.log(this.dataService.userData);
   }
 
   students_graduated!:number;
@@ -36,19 +39,31 @@ constructor(private dataService:dataservice)
 
 grad:any={
   "year":0,
-  "students_graduated":0
+  "students_graduated":0,
+  "college":0,
 }
 
 //url
-urlval="url"
+urlval="http://127.0.0.1:8000/api/gphds/"
 
+res:any
+ngOnInit(): void {
+  
+  this.res=this.dataService.userLoggedIn();
+  this.dataService.getPostOrPut(this.urlval,this.selectedYear);
+
+  
+}
 
   getGPhd(){
 this.grad.year=this.selectedYear;
+this.res=this.dataService.userLoggedIn();
+this.grad.college=this.dataService.userData.id
 this.grad.students_graduated=this.gphd.value['graduated'];
+
 console.log(this.grad)
 
-this.dataService.sendData(this.grad,this.urlval);
+this.dataService.sendData(this.grad,this.urlval,this.selectedYear);
 
 
   }

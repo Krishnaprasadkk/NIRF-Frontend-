@@ -37,18 +37,28 @@ constructor(private dataService:dataservice)
 fees=new FormControl("",Validators.required);
 feesdata:any={
   "year":0,
-  "fees":0
+  "total_students":0,
+  "college":0,
 }
+res:any
+ngOnInit(): void {
+  
+  this.res=this.dataService.userLoggedIn();
+  this.dataService.getPostOrPut(this.urlval,this.selectedYear);
 
+  
+}
 //url;
-urlval=" "
+urlval="http://127.0.0.1:8000/api/escss/"
 
 getEscs(){
+  this.res=this.dataService.userLoggedIn();
+    this.feesdata.college=this.dataService.userData.id;
 console.log(this.escsval);
-this.feesdata.fees= this.escsval.value['students_full_fees']
+this.feesdata.total_students= this.escsval.value['students_full_fees']
 this.feesdata.year=this.selectedYear;
 console.log(this.feesdata)
-this.dataService.sendData(this.feesdata,this.urlval);
+this.dataService.sendData(this.feesdata,this.urlval,this.selectedYear);
 
 
 }

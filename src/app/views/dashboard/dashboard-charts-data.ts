@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { getStyle, hexToRgba } from '@coreui/utils';
 
 export interface IChartProps {
@@ -15,11 +15,15 @@ export interface IChartProps {
 @Injectable({
   providedIn: 'any'
 })
-export class DashboardChartsData {
+export class DashboardChartsData implements OnInit {
   constructor() {
     this.initMainChart();
   }
 
+
+  ngOnInit(): void {
+      
+  }
   public mainChart: IChartProps = {};
 
   public random(min: number, max: number) {

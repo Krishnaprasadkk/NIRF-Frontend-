@@ -12,7 +12,7 @@
                   <span cInputGroupText>
                     <svg cIcon name="cilUser"></svg>
                   </span>
-                  <input [(ngModel)]="collegeName" autoComplete="username" cFormControl placeholder="college-name" name="college_name" />
+                  <input [(ngModel)]="email" autoComplete="email" cFormControl placeholder="xyz@gmail.com" name="email" />
                 </c-input-group>
                 <c-input-group class="mb-4">
                   <span cInputGroupText>
@@ -31,9 +31,9 @@
 
                       Login
                     </button>
-                    <p class="text-medium-emphasis" *ngIf="!isValid && buttonPressed">Enter Correct Password to login </p>
+                    <p class="text-medium-emphasis" *ngIf="!isValid && buttonPressed"> {{LoginMessage}}</p>
 
-                    <p class="text-medium-emphasis" *ngIf="!isValid && password && collegeName">Incorrect password</p>
+                    <p class="text-medium-emphasis" *ngIf="isValid && password && email && buttonPressed">{{LoginMessage}} </p>
 
                   </c-col>
                   <c-col class="text-right" xs="6">

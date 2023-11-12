@@ -23,22 +23,31 @@ buttonPressed=false;
 
 password_control=new FormControl("",Validators.required);
 
+email!:string
 password!:string
-collegeName!:string
+
+// LoginMessage=this.dataService.message;
 
 collegeData:any={
-  "pass":"",
-  "colName":""
+  "email":"",
+  "password":""
 }
+LoginMessage!:string
 
 loginfun(){
+  console.log(this.collegeData)
   this.buttonPressed=true
-  this.isValid=this.dataService.validateCollegeCredentials()
-  if (this.isValid) {
-    this.router.navigate([DashboardComponent])
-  } else {
-  console.log("incorrect password")
+  this.collegeData.email=this.loginval.value['email']
+  this.collegeData.password=this.loginval.value['password']
+this.isValid=this.dataService.isValidCredential
+this.LoginMessage=this.dataService.message;
+  this.dataService.validateCollegeCredentials(this.collegeData)
+  if(this.isValid){
+    this.router.navigate(['/dashboard'])
   }
+
+
+
 }
 
 

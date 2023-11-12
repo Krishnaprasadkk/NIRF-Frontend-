@@ -42,21 +42,30 @@ qpdata:any={
   "year":0,
   "total_citation_Count":0,
   "top_25_percent":0,
+  "college":0,
 
 
 }
+res:any
+ngOnInit(): void {
+  
+  this.res=this.dataService.userLoggedIn();
+  this.dataService.getPostOrPut(this.urlval,this.selectedYear);
 
+  
+}
 //url value
-urlval="url"
+urlval="http://127.0.0.1:8000/api/qps/"
   getqp()
   {
-
+    this.res=this.dataService.userLoggedIn();
+    this.qpdata.college=this.dataService.userData.id;
     this.qpdata.year=this.selectedYear;
     this.qpdata.total_citation_Count=this.qpval.value['total_citation'],
     this.qpdata.top_25_percent =this.qpval.value['top_25_citation']
     console.log(this.qpdata)
 
-    this.dataService.sendData(this.qpdata,this.urlval)
+    this.dataService.sendData(this.qpdata,this.urlval,this.selectedYear)
 
 
 

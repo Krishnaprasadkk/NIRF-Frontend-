@@ -24,6 +24,7 @@ email=""
 registerCollegeData:any={
   "collegename":"",
   "password":"",
+  "confirm_pass":"",
   "email":"",
 
 
@@ -35,6 +36,8 @@ console.log(this.registerCollege);
 this.registerCollegeData.email=this.registerCollege.value['college_email']
 this.registerCollegeData.collegename=this.registerCollege.value['college_name']
 this.registerCollegeData.password=this.registerCollege.value['password']
+this.registerCollegeData.confirm_pass=this.registerCollege.value['confirm_password']
+
 console.log(this.registerCollegeData);
 
 this.dataService.registerCollege(this.registerCollegeData);

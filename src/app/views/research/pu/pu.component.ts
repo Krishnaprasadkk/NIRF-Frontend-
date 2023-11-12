@@ -33,19 +33,30 @@ number_publications=new FormControl("",Validators.required)
 
 puvalue:any={
   "pu":0,
-  "year":0
+  "year":0,
+  "college":0
 }
+res:any
+ngOnInit(): void {
+  this.res=this.dataService.userLoggedIn();
+    this.puvalue.college=this.dataService.userData.id;
+  this.res=this.dataService.userLoggedIn();
+  this.dataService.getPostOrPut(this.urlval,this.selectedYear);
 
+  
+}
 //url value
-urlval="urlvalue"
+urlval="http://127.0.0.1:8000/api/pus/"
 
 @ViewChild('pu') public puval!:NgForm;
 getpu(){
+  this.res=this.dataService.userLoggedIn();
+  this.puvalue.college=this.dataService.userData.id;
 console.log(this.puval);
 this.puvalue.pu=this.puval.value['no_publications']
 this.puvalue.year=<number>this.selectedYear
 console.log(this.puvalue)
-this.dataService.sendData(this.puvalue,this.urlval);
+this.dataService.sendData(this.puvalue,this.urlval,this.selectedYear);
 
 
 }

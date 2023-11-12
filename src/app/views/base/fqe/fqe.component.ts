@@ -37,25 +37,54 @@ phd_total= new FormControl("",Validators.required)
 @ViewChild('phd') phdval!:NgForm;
 phdvalue:any={
   'year':0,
-  'phdUptoEight':0,
-  'phdEightToFifteen':0,
-  'phdAboveFifteeen':0,
-  'phd_total':0
+  'faculty_experience_8years':0,
+  'faculty_experience_8_15years':0,
+  'faculty_experience_more_15_years':0,
+  'faculty_with_phd':0,
+  "college":0
+}
+res:any
+ngOnInit(): void {
+  
+  this.res=this.dataService.userLoggedIn();
+  this.dataService.getPostOrPut(this.urlval,this.selectedYear);
+
+  
+}
+update(e:any){
+  // console.log(this.res)
+   this.phdvalue.college=this.dataService.userData.id
+  // console.log(this.fsrdata)
+  // console.log(this.fsrdata.college)
+  this.selectedYear = <number>e.target.value
+  this.dataService.getPostOrPut(this.urlval,this.selectedYear);
+  this.res=this.dataService.userLoggedIn();
+  console.log(this.dataService.userData);
+
+
+
 }
 
 //url value
-urlval=" "
+urlval="http://127.0.0.1:8000/api/fges/"
+
 
   setPhd(){
+    this.res=this.dataService.userLoggedIn();
 console.log("hello")
 console.log(this.phdval);
 this.phdvalue.year=this.selectedYear;
-this.phdvalue.phd_total=this.totalphd;
-this.phdvalue.phdUptoEight=this.phdUptoEight;
-this.phdvalue.phdEightToFifteen=this.phdEightToFifteen;
-this.phdvalue.phdAboveFifteeen=this.phdAboveFifteeen;
+this.phdvalue.faculty_with_phd=this.totalphd;
+this.phdvalue.faculty_experience_8years=this.phdUptoEight;
+this.phdvalue.faculty_experience_8_15years=this.phdEightToFifteen;
+this.phdvalue.faculty_experience_more_15_years=this.phdAboveFifteeen;
+//added year as primary key
+this.phdvalue.college=this.dataService.userData.id;
+console.log(this.phdvalue)
+
+
 console.log(this.phdvalue);
-this.dataService.sendData(this.phdvalue,this.urlval);
+this.dataService.sendData(this.phdvalue,this.urlval,this.selectedYear);
 
 
 

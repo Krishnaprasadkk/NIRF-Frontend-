@@ -34,7 +34,8 @@ fundingval:any={
   "research_fundings":0,
   "consultation_fundings":0,
   "edp_fundings":0,
-  "year":0
+  "year":0,
+  "college":0
 }
 
 
@@ -47,12 +48,23 @@ const_funding=new FormControl("",Validators.required);
 edp_fund=new FormControl("",Validators.required);
 @ViewChild('fppp') public fpppval!:NgForm;
 
+res:any
+ngOnInit(): void {
+  
+  this.res=this.dataService.userLoggedIn();
+  this.dataService.getPostOrPut(this.urlval,this.selectedYear);
 
+  
+}
 //this is the url
-urlval="urls"
+urlval=""
 
 getfppp(){
 console.log(this.fpppval);
+console.log("hello")
+
+this.res=this.dataService.userLoggedIn();
+this.fundingval.college=this.dataService.userData.id;
 console.log("hello")
 
 this.fundingval.research_fundings=this.fpppval.value['RF'],
@@ -60,7 +72,7 @@ this.fundingval.consultation_fundings=this.fpppval.value['CF']
 this.fundingval.edp_fundings=this.fpppval.value['edp']
 this.fundingval.year=this.selectedYear;
 console.log(this.fundingval)
-this.dataService.sendData(this.fundingval,this.urlval);
+this.dataService.sendData(this.fundingval,this.urlval,this.selectedYear);
   }
 
 

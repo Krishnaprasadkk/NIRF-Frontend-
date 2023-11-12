@@ -40,23 +40,52 @@ StudentData:any={
 "year":0,
 "sanctionedApprovedIntake":0,
 "actualIntake":0,
-"totalphd":0
-
+"totalphd":0,
+"college":0
 }
 
 @ViewChild('ss') StudentStrength!:NgForm;
 
+
+res:any
+ngOnInit(): void {
+  
+  this.res=this.dataService.userLoggedIn();
+  this.dataService.getPostOrPut(this.urlval,this.selectedYear);
+
+  
+}
+
 //url
+urlval="http://127.0.0.1:8000/api/sses/"
 
-urlval=" "
-  selectedYear:any;
+update(e:any){
+  // console.log(this.res)
+   this.StudentData.college=this.dataService.userData.id
+  // console.log(this.fsrdata)
+  // console.log(this.fsrdata.college)
+  this.selectedYear = <number>e.target.value
+  this.dataService.getPostOrPut(this.urlval,this.selectedYear);
+  this.res=this.dataService.userLoggedIn();
+  console.log(this.dataService.userData);
+
+
+
+}
+
+
+// urlval="http://127.0.0.1:8000/api/sses/"
+
+selectedYear!:number;
 getData(){
-
+  this.dataService.getPostOrPut(this.urlval,this.selectedYear);
   this.StudentData.year=<number> this.selectedYear;
+  this.StudentData.college=this.dataService.userData.id
+  console.log(this.StudentData.id)
   this.StudentData.sanctionedApprovedIntake=this.sanctionedApprovedIntake;
   this.StudentData.actualIntake=this.actualIntake;
   this.StudentData.totalphd=this.totalphd;
-  this.dataService.sendData(this.StudentData,this.urlval);
+  this.dataService.sendData(this.StudentData,this.urlval,this.selectedYear);
   console.log(this.StudentData);
 
 }

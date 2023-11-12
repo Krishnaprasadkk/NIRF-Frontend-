@@ -34,24 +34,33 @@ constructor(private dataService:dataservice)
 
   guedata:any={
     "year":0,
-    "students_passed":0
+    "students_passed":0,
+    "college":0
   }
 
   @ViewChild('passed') passedobj!:NgForm;
 
-
+  res:any
+  ngOnInit(): void {
+    
+    this.res=this.dataService.userLoggedIn();
+    this.dataService.getPostOrPut(this.urlval,this.selectedYear);
+  
+    
+  }
   // url
-urlval="url"
+urlval="http://127.0.0.1:8000/api/gues/"
 
   getGue(){
-
+    this.res=this.dataService.userLoggedIn();
+this.guedata.college=this.dataService.userData.id;
 this.guedata.year=this.selectedYear;
 this.guedata.students_passed=this.passedobj.value['passedval']
 console.log(this.passedobj.value['passedval'])
 console.log(this.passedobj)
 console.log(this.guedata)
 
-this.dataService.sendData(this.guedata,this.urlval);
+this.dataService.sendData(this.guedata,this.urlval,this.selectedYear);
 
 
   }
