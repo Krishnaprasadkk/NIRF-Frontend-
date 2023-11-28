@@ -7,14 +7,15 @@
   <p>SELECT YEAR</p>
 
   <select (change)="update($event)"  style="width: 50%; height:30px" >
-    <div>
+     <div>
 
-    </div>
-    <option value="default"></option>
-    <option *ngFor="let year of years" [value]="year">
-        {{year}}
-    </option>
-</select>
+     </div>
+
+     <option *ngFor="let year of years" [value]="year">
+         {{year}}
+     </option>
+ </select>
+<!-- </select> -->
 <br>
 <br>
 <label for="graduated">number of Ph.D students graduated (awarded Ph.D) </label>

@@ -23,7 +23,7 @@ constructor(private dataService:dataservice)
 }
   currYear=this.getCurrentYear();
   curr:number=this.currYear;
-  years:number[]=[this.currYear,this.currYear-1,this.currYear-2,this.currYear-3,this.currYear-4,this.currYear-5];
+  years:any[]=["select the year",this.currYear,this.currYear-1,this.currYear-2,this.currYear-3,this.currYear-4,this.currYear-5];
 
   sanctionedApprovedIntake!:number;
   actualIntake!:number;
@@ -48,24 +48,33 @@ StudentData:any={
 
 
 res:any
+
 ngOnInit(): void {
   
   this.res=this.dataService.userLoggedIn();
-  this.dataService.getPostOrPut(this.urlval,this.selectedYear);
+  
+  
+  this.StudentData.college=this.dataService.userData.id;
+  
+  
+  this.dataService.getPostOrPut3(this.urlget,this.selectedYear);
+  
+  // this.dataService.getPostOrPut2(this.urlget,this.selectedYear,this.dataService.collegeId);
 
   
 }
 
 //url
 urlval="http://127.0.0.1:8000/api/sses/"
-
+urlget="http://127.0.0.1:8000/api/ssget/"
 update(e:any){
   // console.log(this.res)
    this.StudentData.college=this.dataService.userData.id
   // console.log(this.fsrdata)
   // console.log(this.fsrdata.college)
-  this.selectedYear = <number>e.target.value
-  this.dataService.getPostOrPut(this.urlval,this.selectedYear);
+  this.selectedYear = <number>e.target.value;
+  this.dataService.getPostOrPut3(this.urlget,this.selectedYear)
+  // this.dataService.getPostOrPut2(this.urlget,this.selectedYear,this.dataService.collegeId);
   this.res=this.dataService.userLoggedIn();
   console.log(this.dataService.userData);
 
@@ -78,7 +87,10 @@ update(e:any){
 
 selectedYear!:number;
 getData(){
-  this.dataService.getPostOrPut(this.urlval,this.selectedYear);
+  
+  this.dataService.getPostOrPut3(this.urlget,this.selectedYear)
+  // this.dataService.getPostOrPut2(this.urlget,this.selectedYear,this.dataService.collegeId);
+  
   this.StudentData.year=<number> this.selectedYear;
   this.StudentData.college=this.dataService.userData.id
   console.log(this.StudentData.id)

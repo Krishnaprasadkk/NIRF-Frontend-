@@ -20,16 +20,22 @@ constructor(private dataService:dataservice)
 }
   currYear=this.getCurrentYear();
   curr:number=this.currYear;
-  years:number[]=[this.currYear,this.currYear-1,this.currYear-2,this.currYear-3,this.currYear-4,this.currYear-5];
+  // years:number[]=[this.currYear,this.currYear-1,this.currYear-2,this.currYear-3,this.currYear-4,this.currYear-5];
+  years:any=["select the year",this.currYear,this.currYear-1,this.currYear-2,this.currYear-3,this.currYear-4,this.currYear-5];
 
   selectedYear!:number;
 
-
+urlget="http://127.0.0.1:8000/api/gphdget/"
   update(e:any){
-    this.selectedYear = e.target.value
-    this.dataService.getPostOrPut(this.urlval,this.selectedYear);
-  this.res=this.dataService.userLoggedIn();
-  console.log(this.dataService.userData);
+    this.selectedYear = e.target.value;
+    this.grad.college=this.dataService.userData.id
+    // console.log(this.fsrdata)
+    // console.log(this.fsrdata.college)
+    this.selectedYear = <number>e.target.value;
+    this.dataService.getPostOrPut3(this.urlget,this.selectedYear)
+    // this.dataService.getPostOrPut2(this.urlget,this.selectedYear,this.dataService.collegeId);
+    this.res=this.dataService.userLoggedIn();
+    console.log(this.dataService.userData);;
   }
 
   students_graduated!:number;
@@ -50,7 +56,7 @@ res:any
 ngOnInit(): void {
   
   this.res=this.dataService.userLoggedIn();
-  this.dataService.getPostOrPut(this.urlval,this.selectedYear);
+  this.dataService.getPostOrPut3(this.urlval,this.selectedYear);
 
   
 }
@@ -58,12 +64,14 @@ ngOnInit(): void {
   getGPhd(){
 this.grad.year=this.selectedYear;
 this.res=this.dataService.userLoggedIn();
+this.dataService.getPostOrPut3(this.urlval,this.selectedYear);
+
 this.grad.college=this.dataService.userData.id
 this.grad.students_graduated=this.gphd.value['graduated'];
 
 console.log(this.grad)
 
-this.dataService.sendData(this.grad,this.urlval,this.selectedYear);
+this.dataService.sendData2(this.grad,this.urlval,this.selectedYear,this.urlget);
 
 
   }

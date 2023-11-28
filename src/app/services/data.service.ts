@@ -45,11 +45,13 @@ export class dataservice{
     
   }
 
+respective_id:number=1;
 ifPost:boolean
   getPostOrPut(url:string,year:number){
 
     this.http.get(url+year+"/").subscribe((res)=>{
       this.ifPost=false;
+      this.respective_id=res['id'];
       console.log(res)
       console.log(this.ifPost)
     },
@@ -60,6 +62,52 @@ ifPost:boolean
     
     })
   }
+
+  getPostOrPut2(url:string,year:number,collegeId:number){
+      console.log(collegeId)
+    this.http.get(url+year+"-"+this.userData.id+"/").subscribe((res)=>{
+      this.ifPost=false;
+      this.respective_id=res['id'];
+      console.log(res)
+      console.warn(this.respective_id)
+      console.log(res)
+      console.log(this.respective_id+"no error detected")
+      console.log(this.ifPost)
+    },
+    err=>{
+      this.ifPost=true;
+    console.error(err);
+    console.warn(err);
+    console.log(err)
+    console.log(this.respective_id);
+    console.log(this.ifPost);
+    
+    })
+  }
+
+
+  getPostOrPut3(url:string,year:number){
+    
+  this.http.get(url+year+"-"+this.userData.id+"/").subscribe((res)=>{
+    this.ifPost=false;
+    this.respective_id=res['id'];
+    console.log(res)
+    console.warn(this.respective_id)
+    console.log(res)
+    console.log(this.respective_id+"no error detected")
+    console.log(this.ifPost)
+  },
+  err=>{
+    this.ifPost=true;
+  console.error(err);
+  console.warn(err);
+  console.log(err)
+  console.log(this.respective_id);
+  console.log(this.ifPost);
+  
+  })
+}
+
   sendData(objectTosend:any,url:string,selectedYear:number){
 
     if(this.ifPost){
@@ -72,7 +120,7 @@ ifPost:boolean
       
     }
     else{
-      return this.http.put(url+selectedYear+"/",objectTosend).subscribe(Response=>{
+      return this.http.put(url+this.respective_id+"/",objectTosend).subscribe(Response=>{
        console.log("put data sent successfully ") 
       },
       err =>{
@@ -80,6 +128,35 @@ ifPost:boolean
       })
     }
     
+
+  }
+
+
+  sendData2(objectTosend:any,url:string,selectedYear:number,urlget:string){
+
+    if(this.ifPost){
+      return this.http.post(url,objectTosend).subscribe(Response=>{
+        console.log("object sent successfully --post")
+        this.ifPost=false
+        this.getPostOrPut3(urlget,selectedYear)
+      },
+      )
+      
+
+      
+    }
+    else{
+      console.log(url+this.respective_id+"/"+" put sent ")
+      return this.http.put(url+this.respective_id+"/",objectTosend).subscribe(Response=>{
+       console.log("put data sent successfully ") 
+      },
+      err =>{
+        console.log(url+this.respective_id+"/")
+        console.log("data not sent == put")
+        this.getPostOrPut3(urlget,selectedYear)
+      })
+    }
+    this.getPostOrPut3(urlget,selectedYear)
 
   }
 
