@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'NIRFBackend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'nirf_database',
+        'NAME': 'eyesecnirfdatabase18',
         'USER': 'root',
         'PASSWORD': 'root',
         'HOST': 'localhost',
