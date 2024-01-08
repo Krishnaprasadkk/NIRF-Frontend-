@@ -15,6 +15,7 @@ class Institution(AbstractUser):
     USERNAME_FIELD='email'
     REQUIRED_FIELDS=['username']
     
+    
     def __str__(self):
         return str(self.collegename)
     
@@ -311,5 +312,17 @@ class PRRanking(models.Model):
     college = models.ForeignKey(Institution, on_delete=models.CASCADE)
     year = models.IntegerField()
     ranking = models.IntegerField()
+
+
+#score of each COLLEGE
+class InstitutionScore(models.Model):
+    class Meta:
+        unique_together=(('year','college',),)
+    college=models.OneToOneField(Institution,on_delete=models.CASCADE)
+    Score=models.DecimalField(max_digits=20,decimal_places=2)
+    year=models.IntegerField()
+
+    def __str__(self):
+        return str(self.college.collegename)+":"+str(self.Score)
 
 

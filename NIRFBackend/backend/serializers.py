@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
 
-from .models import Institution, Parameter, Subparameter,SubparameterScore,Score, Faculty, ResearchOutput, StudentPlacement, TLR, SS, FSR, FQE, FRU, RP, PU, CMP, QP, IPR, GO, GUE, GPHD, OI, RD, WD, ESCS, PRRanking
+from .models import Institution, Parameter, Subparameter,SubparameterScore,Score, Faculty, ResearchOutput, StudentPlacement, TLR, SS, FSR, FQE, FRU, RP, PU, CMP, QP, IPR, GO, GUE, GPHD, OI, RD, WD, ESCS, PRRanking,InstitutionScore
 
 class InstitutionSerializer(serializers.ModelSerializer):
 
@@ -192,4 +192,10 @@ class PRRankingSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = PRRanking
+        fields = '__all__'
+
+class InstitutionScoreSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = InstitutionScore
         fields = '__all__'

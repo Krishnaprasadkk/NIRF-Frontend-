@@ -1,7 +1,6 @@
 from rest_framework import viewsets
 from rest_framework.response import Response
-from .models import Institution,Parameter, Subparameter, Faculty,Score,SubparameterScore,ResearchOutput, StudentPlacement, TLR, SS, FSR, FQE, FRU, RP, PU, CMP, QP, IPR, GO, GUE, GPHD, OI, RD, WD, ESCS, PRRanking
-
+from .models import Institution,Parameter, Subparameter, Faculty,Score,SubparameterScore,ResearchOutput, StudentPlacement, TLR, SS, FSR, FQE, FRU, RP, PU, CMP, QP, IPR, GO, GUE, GPHD, OI, RD, WD, ESCS, PRRanking,InstitutionScore
 from .serializers import *
 
 
@@ -20,7 +19,20 @@ class InstitutionViewSet(viewsets.ModelViewSet):
 
         return Response({'success': True})
     
+class InstitutionScoreViewSet(viewsets.ModelViewSet):
+    queryset = InstitutionScore.objects.all()
+    serializer_class = InstitutionScoreSerializer
 
+    def update(self, request, *args, **kwargs):
+        # Get the object to update.
+        object = self.get_object()
+
+        # Update the object with the data in the request body.
+        serializer = self.get_serializer(object, data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+
+        return Response({'success': True})
 
 class ParameterViewSet(viewsets.ModelViewSet):
     queryset = Parameter.objects.all()
@@ -843,15 +855,26 @@ def calculate_OutreachAndInclusive(request,id):
 def calculateOverallScore(request,id):
       college = Institution.objects.get(id=id)
       year=2023
-
+      calculate_tlr_score(request,id)
+      calculate_ResearchANDProffesional(request,id)
+      calculate_GraduationOutcomes(request,id)
+      calculate_OutreachAndInclusive(request,id)
       #need to query Parametr for weights and Score for scores table
-      #parameter=Parameter.objects.filter(year=year,college=college)
+      parameter=Parameter.objects.filter(year=year,college=college)
       score=Score.objects.filter(year=year,college=college)
       
       overallscore=0
       for i in range(4):
           overallscore+=score[i].score
-
+      
+      institutionscore=InstitutionScore.objects.filter(college=college,year=year).first()
+      if institutionscore is None:
+          institutionscore=InstitutionScore(college=college,year=year,Score=overallscore)
+      else:
+          institutionscore.Score=overallscore
+      
+      institutionscore.save()
+            
       return HttpResponse(overallscore)
           
 
@@ -1062,6 +1085,96 @@ def escsgetview(request,id):
 # url=lacalhost:8000/api/college_list/2023-collegeid/
 @csrf_exempt
 def list_of_colleges(request,id):
-    pass
+    listofclg=Institution.objects.exclude(pk=id)
+    lc=[]
+    i=0
+    for clg in listofclg:
+       if str(clg)!='admin':
+            obj1=dict()
+            obj1['clgid']=clg.id
+            obj1['clgname']=clg.collegename
+            lc.append(obj1)
+
+    print(lc)
+       
+             
+    return HttpResponse(json.dumps(lc), content_type='application/json')
+ 
+
+@csrf_exempt
+def college_Comparision(request,id,id1):
+    #id = ourclgid-toclgid
+    #id1 = year
+    strsplit=id.split("-")
+    ourclgid=strsplit[0]
+    toclgid=strsplit[1]
+    year=id1
+    #print(ourclgid)
+    #ourclgsubparametrscore=SubparameterScore.objects.filter(college=ourclgid,year=year)
+    obj1=dict()
+    print(ourclgid)
+    print("hello")
+    try:
+     if len(Score.objects.filter(college=ourclgid,year=year))!=len(Score.objects.filter(college=toclgid,year=year)):
+        raise Exception
+    except Exception:
+        return HttpResponse("you missed to enter some of the parameters data")
+
+   # for 1st college
+    obj1[str(Institution.objects.get(id=ourclgid))]={}
+    for parameter in reversed(Parameter.objects.filter(college=ourclgid,year=year)):
+        print(parameter)
+        obj1[str(parameter.college.collegename)][str(parameter)]={}
+        for subparameter in Subparameter.objects.filter(college=ourclgid,year=year,parameter=parameter):
+            print(":")
+            print(subparameter)
+            obj1[str(parameter.college.collegename)][str(parameter)][str(subparameter)]=float(SubparameterScore.objects.get(subparameter=subparameter,year=year,college=ourclgid,parameter=parameter).score)
+    # for second college
+    obj1[str(Institution.objects.get(id=toclgid))]={}
+    for parameter in reversed(Parameter.objects.filter(college=toclgid,year=year)):
+        print(parameter)
+        obj1[str(parameter.college.collegename)][str(parameter)]={}
+        for subparameter in Subparameter.objects.filter(college=toclgid,year=year,parameter=parameter):
+            print(":")
+            print(subparameter)
+            obj1[str(parameter.college.collegename)][str(parameter)][str(subparameter)]=float(SubparameterScore.objects.get(subparameter=subparameter,year=year,college=toclgid,parameter=parameter).score)
+                         
+         
+    print(obj1) 
+    #toclgsubparameterscore=SubparameterScore.objects.filter(college=toclgid,year=year)
+    return HttpResponse(json.dumps(obj1), content_type='application/json')
+
+#to calculate the rank of the college
+import pandas as pd
+@csrf_exempt
+def college_ranking(request,id):
+    strsplit=id.split('-')
+    collegeid=strsplit[0]
+    collegename=Institution.objects.get(id=collegeid).collegename
+    print(collegename)
+    year=strsplit[1]
+    clgnamelist=[]
+    clgscorelist=[]
+    for i in InstitutionScore.objects.filter(year=year):
+        strsplit=str(i).split(":")
+        clgnamelist.append(strsplit[0])
+        clgscorelist.append(float(strsplit[1]))
+    
+    dict1={"College":clgnamelist,
+           "Scores":clgscorelist
+           }
+    df = pd.DataFrame(dict1)
+    df=df.sort_values(by='Scores',ignore_index=True,ascending=False)
+    print(df)
+    filter=df['College']==collegename
+    df=df[filter]
+    rank=df.index.values[0]
+    return  HttpResponse(rank+1)
+
+
+
+    
+
+
 
 
